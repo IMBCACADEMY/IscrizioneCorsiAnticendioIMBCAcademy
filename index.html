@@ -1,533 +1,796 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Iscrizione Corsi Antincendio - IMBC Fire & Safety Academy</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iscrizione Corsi Antincendio - IMBC Fire & Safety Academy</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
-        </div>
-    </div>
-</div>
-
-<!-- Fine Modal Successo -->
-
-<!-- Altri contenuti del form -->
-</body>
-
 <body>
-<div class="container">
+  <div class="container">
 
-  <!-- LOGO IMBC -->
-  <img src="logo_imbc.png" alt="Logo IMBC" class="logo">
+    <!-- LOGO IMBC -->
+    <img src="logo_imbc.png" alt="Logo IMBC" class="logo">
 
-  <!-- Pulsante CONTATTI in alto a destra -->
-  <button type="button" class="btn-contatti" onclick="openContattiModal()">CONTATTI</button>
+    <!-- Pulsante CONTATTI -->
+    <button type="button" class="btn-contatti" onclick="openContattiModal()">CONTATTI</button>
 
-  <div class="header-section">
-    <h1>ISCRIZIONE CORSI ANTINCENDIO</h1>
-    <h2 class="subtitle">IMBC Fire & Safety Academy</h2>
-  </div>
+    <header class="header-section">
+      <h1>ISCRIZIONE CORSI ANTINCENDIO</h1>
+      <h2 class="subtitle">IMBC Fire & Safety Academy</h2>
+    </header>
 
-  <!-- Modal CONTATTI -->
-  <div id="contatti-modal" class="modal-overlay" style="display: none;">
-    <div class="modal-content">
-      <button type="button" class="modal-close" onclick="closeContattiModal()">&times;</button>
-      <h3 class="modal-title">Contatti e Segnalazione Problemi</h3>
-      <form id="contatti-form" onsubmit="submitContattiForm(event)">
-        <div class="form-group">
-          <label for="contatti-problema">Descrivi il problema:</label>
-          <textarea id="contatti-problema" rows="4" placeholder="Descrivi il problema riscontrato..." required></textarea>
+    <!-- Modal CONTATTI -->
+    <div id="contatti-modal" class="modal-overlay" style="display:none;">
+      <div class="modal-content">
+        <button type="button" class="modal-close" onclick="closeContattiModal()">&times;</button>
+        <h3 class="modal-title">Contatti e Segnalazione Problemi</h3>
+        <form id="contatti-form" onsubmit="submitContattiForm(event)">
+          <div class="form-group">
+            <label for="contatti-problema">Descrivi il problema:</label>
+            <textarea id="contatti-problema" rows="4" placeholder="Descrivi il problema riscontrato..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="contatti-email">La tua email:</label>
+            <input type="email" id="contatti-email" placeholder="Inserisci la tua email" required>
+          </div>
+          <div class="form-group">
+            <label for="contatti-telefono">Telefono:</label>
+            <input type="text" id="contatti-telefono" placeholder="Inserisci il tuo numero di telefono">
+          </div>
+          <button type="submit" class="btn-submit-contatti">Invia segnalazione</button>
+        </form>
+        <div class="contatti-info">
+          <p><strong>Oppure contattaci direttamente:</strong></p>
+          <p>Email: <a href="mailto:info@imbcacademy.it">info@imbcacademy.it</a></p>
         </div>
-        <div class="form-group">
-          <label for="contatti-email">La tua email:</label>
-          <input type="email" id="contatti-email" placeholder="Inserisci la tua email" required>
-        </div>
-        <div class="form-group">
-          <label for="contatti-telefono">Telefono:</label>
-          <input type="text" id="contatti-telefono" placeholder="Inserisci il tuo numero di telefono">
-        </div>
-        <button type="submit" class="btn-submit-contatti">Invia segnalazione</button>
-      </form>
-      <div class="contatti-info">
-        <p><strong>Oppure contattaci direttamente:</strong></p>
-        <p>Email: <a href="mailto:info@imbcacademy.it">info@imbcacademy.it</a></p>
-      </div>
-    </div>
-  </div>
-
-  <!-- FORM ISCRIZIONE (MODIFICATO PER FORMSPREE) -->
-  <form id="iscrizione-form" action="https://formspree.io/f/xzdvygoo" method="POST">
-    <!-- Hidden field for Netlify Forms -->
-    <input type="hidden" name="form-name" value="iscrizione-corsi">
-
-    <!-- INTEGRAZIONE: campi semplici Nome / Email richiesti dall'utente -->
-    <!-- Questi campi verranno inviati a Formspree insieme agli altri dati -->
-    <div class="form-group compact-contact-fields">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" placeholder="Nome" required>
-    </div>
-    <div class="form-group compact-contact-fields">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" placeholder="Email" required>
-    </div>
-
-    <!-- Honeypot field for spam prevention -->
-    <p class="hidden" style="display:none;">
-      <label>Non compilare questo campo: <input name="bot-field" /></label>
-    </p>
-
-    <!-- Tipo Iscrizione: Azienda o Privato -->
-    <div class="form-section">
-      <h3 class="section-title">Tipo di Iscrizione</h3>
-      <div class="tipo-iscrizione-container">
-        <label class="tipo-iscrizione-option">
-          <input type="radio" name="tipo-iscrizione" id="tipo-privato" value="privato" checked>
-          <span class="tipo-label">
-            <strong>Privato</strong>
-            <small>Iscrizione individuale</small>
-          </span>
-        </label>
-        <label class="tipo-iscrizione-option">
-          <input type="radio" name="tipo-iscrizione" id="tipo-azienda" value="azienda">
-          <span class="tipo-label">
-            <strong>Azienda</strong>
-            <small>Iscrizione di più persone</small>
-          </span>
-        </label>
       </div>
     </div>
 
-    <!-- Dati Azienda (visibile solo se selezionata Azienda) -->
-    <div class="form-section" id="dati-azienda-section" style="display: none;">
-      <h3 class="section-title">Dati Azienda</h3>
+    <!-- FORM ISCRIZIONE (Formspree) -->
+    <main>
+      <form id="iscrizione-form" action="https://formspree.io/f/xzdvygoo" method="POST" novalidate>
+        <!-- Honeypot anti-spam -->
+        <p class="hidden" style="display:none;">
+          <label>Non compilare questo campo: <input name="bot-field" /></label>
+        </p>
 
-      <div class="form-group">
-        <label for="ragione-sociale">Ragione Sociale:</label>
-        <input type="text" id="ragione-sociale" name="ragione-sociale" placeholder="Inserisci la ragione sociale dell'azienda">
-      </div>
-
-      <div class="form-group">
-        <label for="partita-iva">Partita IVA / Codice Fiscale Azienda:</label>
-        <input type="text" id="partita-iva" name="partita-iva" placeholder="Inserisci P.IVA o Codice Fiscale" maxlength="16">
-        <div id="partita-iva-error" class="error-message" style="display: none;">
-          La Partita IVA deve contenere 11 caratteri, il Codice Fiscale 16 caratteri.
+        <!-- Contatti minimi -->
+        <div class="form-group compact-contact-fields">
+          <label for="nome">Nome:</label>
+          <input type="text" id="nome" name="nome" placeholder="Nome" required>
         </div>
-      </div>
-
-      <div class="form-group">
-        <label for="codice-sdi">Codice SDI (Sistema di Interscambio):</label>
-        <input type="text" id="codice-sdi" name="codice-sdi" placeholder="Inserisci il codice SDI (7 caratteri)" maxlength="7">
-      </div>
-
-      <div class="form-group">
-        <label for="indirizzo-azienda">Indirizzo Sede Legale:</label>
-        <input type="text" id="indirizzo-azienda" name="indirizzo-azienda" placeholder="Via/Piazza, numero civico, CAP, Città, Provincia">
-      </div>
-
-      <div class="form-group">
-        <label for="email-referente">Email Referente Aziendale:</label>
-        <input type="email" id="email-referente" name="email-referente" placeholder="Inserisci l'email del referente aziendale">
-      </div>
-
-      <div class="form-group">
-        <label for="pec-azienda">PEC Aziendale:</label>
-        <input type="email" id="pec-azienda" name="pec-azienda" placeholder="Inserisci la PEC aziendale">
-      </div>
-
-      <div class="form-group">
-        <label for="telefono-azienda">Telefono Azienda:</label>
-        <input type="text" id="telefono-azienda" name="telefono-azienda" placeholder="Inserisci il numero di telefono aziendale">
-      </div>
-
-      <div class="form-group">
-        <label for="settore-azienda">Settore di Appartenenza:</label>
-        <select id="settore-azienda" name="settore-azienda" required>
-          <option value="" disabled selected>Seleziona settore</option>
-          <option value="Industria manifatturiera">Industria manifatturiera</option>
-          <option value="Edilizia e costruzioni">Edilizia e costruzioni</option>
-          <option value="Commercio">Commercio</option>
-          <option value="Sanità">Sanità</option>
-          <option value="Istruzione">Istruzione</option>
-          <option value="Trasporti e logistica">Trasporti e logistica</option>
-          <option value="Alberghiero e ristorazione">Alberghiero e ristorazione</option>
-          <option value="Servizi">Servizi</option>
-          <option value="Pubblica Amministrazione">Pubblica Amministrazione</option>
-          <option value="Agricoltura">Agricoltura</option>
-          <option value="Altro">Altro</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Container per i partecipanti -->
-    <div id="partecipanti-container">
-      <!-- Partecipante 1 -->
-      <div class="form-section partecipante-section" data-partecipante="1">
-        <h3 class="section-title">
-          <span class="partecipante-title">Dati Personali</span>
-          <button type="button" class="btn-remove-partecipante" style="display: none;" onclick="removePartecipante(this)">Rimuovi</button>
-        </h3>
-
-        <div class="form-group">
-          <label>Nome:</label>
-          <input type="text" class="partecipante-nome" name="partecipante-1-nome" placeholder="Inserisci il nome" required>
+        <div class="form-group compact-contact-fields">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" placeholder="Email" required>
         </div>
 
-        <div class="form-group">
-          <label>Cognome:</label>
-          <input type="text" class="partecipante-cognome" name="partecipante-1-cognome" placeholder="Inserisci il cognome" required>
-        </div>
+        <!-- Tipo Iscrizione -->
+        <section class="form-section">
+          <h3 class="section-title">Tipo di Iscrizione</h3>
+          <div class="tipo-iscrizione-container">
+            <label class="tipo-iscrizione-option">
+              <input type="radio" name="tipo-iscrizione" id="tipo-privato" value="privato" checked>
+              <span class="tipo-label"><strong>Privato</strong><small>Iscrizione individuale</small></span>
+            </label>
+            <label class="tipo-iscrizione-option">
+              <input type="radio" name="tipo-iscrizione" id="tipo-azienda" value="azienda">
+              <span class="tipo-label"><strong>Azienda</strong><small>Iscrizione di più persone</small></span>
+            </label>
+          </div>
+        </section>
 
-        <div class="form-group">
-          <label>Email:</label>
-          <input type="email" class="partecipante-email" name="partecipante-1-email" placeholder="Inserisci l'email" required>
-        </div>
+        <!-- Dati Azienda -->
+        <section class="form-section" id="dati-azienda-section" style="display:none;">
+          <h3 class="section-title">Dati Azienda</h3>
 
-        <div class="form-group privato-only-field">
-          <label>Telefono:</label>
-          <input type="text" class="partecipante-telefono" name="partecipante-1-telefono" placeholder="Inserisci il numero di telefono" required>
-        </div>
+          <div class="form-group">
+            <label for="ragione-sociale">Ragione Sociale:</label>
+            <input type="text" id="ragione-sociale" name="ragione-sociale" placeholder="Inserisci la ragione sociale dell'azienda">
+          </div>
 
-        <div class="form-group">
-          <label>Codice Fiscale:</label>
-          <input type="text" class="partecipante-codice-fiscale" name="partecipante-1-codice-fiscale" placeholder="Inserisci il codice fiscale" maxlength="16" required>
-          <div class="error-message codice-fiscale-error" style="display: none;">
-            Il codice fiscale deve contenere esattamente 16 caratteri.
+          <div class="form-group">
+            <label for="partita-iva">Partita IVA / Codice Fiscale Azienda:</label>
+            <input type="text" id="partita-iva" name="partita-iva" placeholder="Inserisci P.IVA o Codice Fiscale" maxlength="16">
+            <div id="partita-iva-error" class="error-message" style="display:none;">La Partita IVA deve contenere 11 caratteri, il Codice Fiscale 16 caratteri.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="codice-sdi">Codice SDI (7 caratteri):</label>
+            <input type="text" id="codice-sdi" name="codice-sdi" placeholder="Inserisci il codice SDI" maxlength="7">
+          </div>
+
+          <div class="form-group">
+            <label for="indirizzo-azienda">Indirizzo Sede Legale:</label>
+            <input type="text" id="indirizzo-azienda" name="indirizzo-azienda" placeholder="Via/Piazza, numero civico, CAP, Città, Provincia">
+          </div>
+
+          <div class="form-group">
+            <label for="email-referente">Email Referente Aziendale:</label>
+            <input type="email" id="email-referente" name="email-referente" placeholder="Inserisci l'email del referente aziendale">
+          </div>
+
+          <div class="form-group">
+            <label for="pec-azienda">PEC Aziendale:</label>
+            <input type="email" id="pec-azienda" name="pec-azienda" placeholder="Inserisci la PEC aziendale">
+          </div>
+
+          <div class="form-group">
+            <label for="telefono-azienda">Telefono Azienda:</label>
+            <input type="text" id="telefono-azienda" name="telefono-azienda" placeholder="Inserisci il numero di telefono aziendale">
+          </div>
+
+          <div class="form-group">
+            <label for="settore-azienda">Settore di Appartenenza:</label>
+            <select id="settore-azienda" name="settore-azienda">
+              <option value="" disabled selected>Seleziona settore</option>
+              <option value="Industria manifatturiera">Industria manifatturiera</option>
+              <option value="Edilizia e costruzioni">Edilizia e costruzioni</option>
+              <option value="Commercio">Commercio</option>
+              <option value="Sanità">Sanità</option>
+              <option value="Istruzione">Istruzione</option>
+              <option value="Trasporti e logistica">Trasporti e logistica</option>
+              <option value="Alberghiero e ristorazione">Alberghiero e ristorazione</option>
+              <option value="Servizi">Servizi</option>
+              <option value="Pubblica Amministrazione">Pubblica Amministrazione</option>
+              <option value="Agricoltura">Agricoltura</option>
+              <option value="Altro">Altro</option>
+            </select>
+          </div>
+        </section>
+
+        <!-- Partecipanti container -->
+        <div id="partecipanti-container">
+          <!-- Partecipante template (Partecipante 1 predefinito) -->
+          <div class="form-section partecipante-section" data-partecipante-index="1">
+            <h3 class="section-title">
+              <span class="partecipante-title">Dati Partecipante 1</span>
+              <button type="button" class="btn-remove-partecipante" style="display:none;" onclick="removePartecipante(this)">Rimuovi</button>
+            </h3>
+
+            <div class="form-group">
+              <label for="partecipante-1-nome">Nome:</label>
+              <input type="text" id="partecipante-1-nome" name="partecipante-1-nome" class="partecipante-nome" placeholder="Inserisci il nome" required>
+            </div>
+
+            <div class="form-group">
+              <label for="partecipante-1-cognome">Cognome:</label>
+              <input type="text" id="partecipante-1-cognome" name="partecipante-1-cognome" class="partecipante-cognome" placeholder="Inserisci il cognome" required>
+            </div>
+
+            <div class="form-group">
+              <label for="partecipante-1-email">Email:</label>
+              <input type="email" id="partecipante-1-email" name="partecipante-1-email" class="partecipante-email" placeholder="Inserisci l'email" required>
+            </div>
+
+            <div class="form-group privato-only-field">
+              <label for="partecipante-1-telefono">Telefono:</label>
+              <input type="text" id="partecipante-1-telefono" name="partecipante-1-telefono" class="partecipante-telefono" placeholder="Inserisci il numero di telefono" required>
+            </div>
+
+            <div class="form-group">
+              <label for="partecipante-1-codice-fiscale">Codice Fiscale:</label>
+              <input type="text" id="partecipante-1-codice-fiscale" name="partecipante-1-codice-fiscale" class="partecipante-codice-fiscale" placeholder="Inserisci il codice fiscale" maxlength="16" required>
+              <div class="error-message codice-fiscale-error" style="display:none;">Il codice fiscale deve contenere esattamente 16 caratteri.</div>
+            </div>
+
+            <div class="form-group">
+              <label for="partecipante-1-profilo">Profilo Professionale / Mansione:</label>
+              <input type="text" id="partecipante-1-profilo" name="partecipante-1-profilo" class="partecipante-profilo" placeholder="Es. Responsabile sicurezza, Operaio, Tecnico..." required>
+            </div>
+
+            <div class="form-group privato-only-field">
+              <label for="partecipante-1-settore">Settore di Appartenenza:</label>
+              <select id="partecipante-1-settore" name="partecipante-1-settore" class="partecipante-settore">
+                <option value="" disabled selected>Seleziona settore</option>
+                <option value="Industria manifatturiera">Industria manifatturiera</option>
+                <option value="Edilizia e costruzioni">Edilizia e costruzioni</option>
+                <option value="Commercio">Commercio</option>
+                <option value="Sanità">Sanità</option>
+                <option value="Istruzione">Istruzione</option>
+                <option value="Trasporti e logistica">Trasporti e logistica</option>
+                <option value="Alberghiero e ristorazione">Alberghiero e ristorazione</option>
+                <option value="Servizi">Servizi</option>
+                <option value="Pubblica Amministrazione">Pubblica Amministrazione</option>
+                <option value="Agricoltura">Agricoltura</option>
+                <option value="Altro">Altro</option>
+              </select>
+            </div>
+
+            <div class="signature-container partecipante-firma-container privato-only-signature">
+              <label>Firma del Partecipante:</label>
+              <div class="signature-type-toggle">
+                <label class="signature-type-option">
+                  <input type="radio" name="partecipante-1-signature-type" value="draw" checked>
+                  <span>Disegna firma</span>
+                </label>
+                <label class="signature-type-option">
+                  <input type="radio" name="partecipante-1-signature-type" value="text">
+                  <span>Scrivi il testo</span>
+                </label>
+              </div>
+
+              <div class="signature-draw-container">
+                <canvas class="partecipante-signature-pad" id="partecipante-1-signature-pad" width="400" height="150"></canvas>
+                <button type="button" class="btn-secondary" onclick="clearPartecipanteSignature(this)">Cancella firma</button>
+              </div>
+
+              <div class="signature-text-container" style="display:none;">
+                <input type="text" class="signature-text-input" placeholder="Scrivi nome e cognome per generare la firma">
+                <canvas class="signature-text-preview" width="400" height="150"></canvas>
+              </div>
+            </div>
+
           </div>
         </div>
 
+        <!-- Aggiungi partecipante (solo per aziende) -->
+        <div id="aggiungi-partecipante-container" style="display:none;">
+          <button type="button" class="btn-add-partecipante" onclick="addPartecipante()">+ Aggiungi Partecipante</button>
+        </div>
+
+        <!-- Dettagli Corso -->
+        <section class="form-section">
+          <h3 class="section-title">Dettagli Corso</h3>
+
+          <div class="form-group">
+            <label for="corso">Titolo Corso:</label>
+            <select id="corso" name="corso" required>
+              <option value="" disabled selected>Seleziona corso</option>
+              <option value="Antincendio livello 1 – 4 ore">Antincendio livello 1 – 4 ore</option>
+              <option value="Antincendio livello 2 – 8 ore">Antincendio livello 2 – 8 ore</option>
+              <option value="Antincendio livello 3 – 16 ore">Antincendio livello 3 – 16 ore</option>
+              <option value="Aggiornamento livello 1 – 2 ore">Aggiornamento livello 1 – 2 ore</option>
+              <option value="Aggiornamento livello 2 – 5 ore">Aggiornamento livello 2 – 5 ore</option>
+              <option value="Aggiornamento livello 3 – 8 ore">Aggiornamento livello 3 – 8 ore</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="prezzo">Quota di partecipazione per persona (€):</label>
+            <input type="text" id="prezzo" name="prezzo" readonly>
+          </div>
+
+          <div class="form-group" id="totale-container" style="display:none;">
+            <label for="totale">Totale (€):</label>
+            <input type="text" id="totale" name="totale" readonly>
+            <small class="totale-info">Calcolato in base al numero di partecipanti</small>
+          </div>
+        </section>
+
+        <!-- Termini e modalità di pagamento -->
+        <section class="form-section">
+          <h3 class="section-title">Modalità di iscrizione e pagamento</h3>
+          <div class="terms">
+            <label class="term-item">
+              <input type="checkbox" class="required-checkbox" name="term-1" required>
+              <span class="term-text">1) L'iscrizione al corso è subordinata al pagamento anticipato dell'intero importo. Seleziona la modalità di pagamento preferita:</span>
+            </label>
+
+            <div class="payment-method-selection">
+              <label class="payment-method-option">
+                <input type="radio" name="metodo-pagamento" id="pagamento-bonifico" value="bonifico" required>
+                <span class="payment-method-label"><strong>Bonifico Bancario</strong></span>
+              </label>
+              <label class="payment-method-option">
+                <input type="radio" name="metodo-pagamento" id="pagamento-carta" value="carta">
+                <span class="payment-method-label"><strong>Carta di Credito / Debito / Google Pay</strong></span>
+              </label>
+            </div>
+
+            <div id="bonifico-details" class="payment-bonifico-section" style="display:none;">
+              <div class="payment-info-box">
+                <p><strong>Coordinate Bancarie:</strong></p>
+                <p>Intestatario: <strong>MICHELA COCCO</strong></p>
+                <p>Banca: <strong>BANCA FINDOMESTIC</strong></p>
+                <p>IBAN: <strong>IT65U0311514000000000005566</strong></p>
+              </div>
+            </div>
+
+            <div id="carta-details" class="payment-carta-section" style="display:none;">
+              <div class="payment-info-box">
+                <p><strong>Pagamento con Carta di Credito / Debito / Google Pay</strong></p>
+                <p>Inserisci la tua email per ricevere il link di pagamento sicuro.</p>
+                <div class="form-group">
+                  <label for="email-pagamento">Email per link di pagamento:</label>
+                  <input type="email" id="email-pagamento" name="email-pagamento" placeholder="Inserisci email per link di pagamento">
+                </div>
+              </div>
+            </div>
+
+            <label class="term-item">
+              <input type="checkbox" class="required-checkbox" name="term-2" required>
+              <span class="term-text">2) L'iscrizione si considera perfezionata al momento del ricevimento della scheda compilata e sottoscritta, unitamente alla copia della ricevuta di pagamento.</span>
+            </label>
+
+            <label class="term-item">
+              <input type="checkbox" class="required-checkbox" name="term-3" required>
+              <span class="term-text">3) In caso di mancata presentazione, IMBC FIRE & SAFETY ACADEMY sarà autorizzata ad emettere fattura per l'intero importo e trattenere l'importo versato.</span>
+            </label>
+
+            <label class="term-item">
+              <input type="checkbox" class="required-checkbox" name="term-4" required>
+              <span class="term-text">4) In caso di ritiro durante il corso, IMBC FIRE & SAFETY ACADEMY emetterà fattura per l'intero importo garantendo il diritto al materiale didattico distribuito.</span>
+            </label>
+
+            <label class="term-item">
+              <input type="checkbox" class="required-checkbox" name="term-5" required>
+              <span class="term-text">5) IMBC FIRE & SAFETY ACADEMY si riserva la facoltà di annullare o rinviare i corsi programmati. Ogni variazione sarà tempestivamente comunicata.</span>
+            </label>
+          </div>
+        </section>
+
+        <!-- Informativa Privacy -->
+        <section class="form-section privacy-section">
+          <h3 class="section-title">Informativa Privacy</h3>
+          <div class="privacy-content">
+            <p><strong>Informativa Privacy – Iscrizione Corsi Antincendio IMBC</strong></p>
+
+            <p>Ai sensi degli artt. 13 e 14 del Regolamento UE 2016/679 (GDPR), IMBC FIRE & SAFETY ACADEMY, con sede legale in Vezzano Ligure (SP), 19020, via Caffaggio 1, rappresentata dal legale rappresentante, tratta i dati per finalità connesse all'erogazione dei corsi.</p>
+
+            <ul>
+              <li>Gestione dell'iscrizione e partecipazione al corso, inclusa la generazione della scheda iscrizione e del PDF allegato.</li>
+              <li>Invio di comunicazioni relative all'attività formativa, materiali didattici, certificazioni e informazioni organizzative.</li>
+              <li>Adempimenti fiscali, contabili e normativi connessi all'erogazione dei corsi.</li>
+              <li>Comunicazione a soggetti terzi e autorità competenti quando richiesto dalla normativa.</li>
+            </ul>
+
+            <p><strong>Base giuridica del trattamento:</strong> il trattamento si basa sul consenso espresso tramite le checkbox presenti nel modulo.</p>
+
+            <p><strong>Modalità di trattamento:</strong> i dati saranno trattati elettronicamente tramite sistemi informatici sicuri.</p>
+
+            <p><strong>Conservazione dei dati:</strong> i dati saranno conservati per il tempo necessario a soddisfare le finalità di trattamento e nel rispetto delle normative vigenti.</p>
+
+            <p><strong>Diritti dell'interessato:</strong> puoi esercitare i diritti di accesso, rettifica, cancellazione, limitazione del trattamento, opposizione e portabilità dei dati (artt. 15-22 GDPR).</p>
+
+            <p><strong>Accettazione:</strong> spuntando la checkbox nel modulo confermi di aver preso visione dell'informativa e di fornire il consenso al trattamento dei tuoi dati personali per le finalità indicate.</p>
+          </div>
+
+          <div class="privacy-date">
+            <label for="data-privacy">Data di sottoscrizione:</label>
+            <input type="text" id="data-privacy" name="data-privacy" readonly>
+          </div>
+
+          <div class="privacy-authorization">
+            <p><strong>Autorizzazione al trattamento dei dati personali:</strong></p>
+            <label class="radio-item">
+              <input type="radio" name="privacy-consent" id="privacy-autorizza" value="autorizza" required>
+              <span>Autorizzo il trattamento dei miei dati personali</span>
+            </label>
+            <label class="radio-item">
+              <input type="radio" name="privacy-consent" id="privacy-non-autorizza" value="non-autorizza">
+              <span>Non autorizzo il trattamento dei miei dati personali</span>
+            </label>
+            <div id="privacy-error-message" class="error-message" style="display:none;">È impossibile procedere all'iscrizione al corso senza autorizzazione al trattamento dei dati personali.</div>
+          </div>
+
+          <div class="signature-container">
+            <label>Firma per consenso privacy:</label>
+            <div class="signature-type-toggle">
+              <label class="signature-type-option">
+                <input type="radio" name="privacy-signature-type" value="draw" checked>
+                <span>Disegna firma</span>
+              </label>
+              <label class="signature-type-option">
+                <input type="radio" name="privacy-signature-type" value="text">
+                <span>Scrivi il testo</span>
+              </label>
+            </div>
+            <div class="signature-draw-container">
+              <canvas id="privacy-signature-pad" width="400" height="150"></canvas>
+              <button type="button" class="btn-secondary" onclick="clearPrivacySignature()">Cancella firma privacy</button>
+            </div>
+            <div class="signature-text-container" style="display:none;">
+              <input type="text" id="privacy-signature-text" class="signature-text-input" placeholder="Scrivi nome e cognome per generare la firma">
+              <canvas id="privacy-signature-text-preview" class="signature-text-preview" width="400" height="150"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- Firma Legale Rappresentante (solo Azienda) -->
+        <section class="form-section" id="firma-legale-section" style="display:none;">
+          <h3 class="section-title">Firma del Legale Rappresentante e/o Responsabile Aziendale</h3>
+          <div class="signature-container">
+            <label>Firma del Legale Rappresentante:</label>
+            <div class="signature-type-toggle signature-type-toggle-3">
+              <label class="signature-type-option">
+                <input type="radio" name="legale-signature-type" value="draw" checked>
+                <span>Disegna firma</span>
+              </label>
+              <label class="signature-type-option">
+                <input type="radio" name="legale-signature-type" value="text">
+                <span>Scrivi il testo</span>
+              </label>
+              <label class="signature-type-option signature-type-option-certified">
+                <input type="radio" name="legale-signature-type" value="certified">
+                <span>Firma Certificata</span>
+              </label>
+            </div>
+
+            <div class="signature-draw-container">
+              <canvas id="legale-signature-pad" width="400" height="150"></canvas>
+              <button type="button" class="btn-secondary" onclick="clearLegaleSignature()">Cancella firma</button>
+            </div>
+
+            <div class="signature-text-container" style="display:none;">
+              <input type="text" id="legale-signature-text" class="signature-text-input" placeholder="Scrivi nome e cognome per generare la firma">
+              <canvas id="legale-signature-text-preview" class="signature-text-preview" width="400" height="150"></canvas>
+            </div>
+
+            <div class="signature-certified-container" style="display:none;">
+              <div class="certified-info">
+                <p><strong>Firma Digitale Certificata</strong></p>
+                <p>Inserisci i dati del certificato di firma digitale qualificata (smart card, token USB, firma remota).</p>
+              </div>
+              <div class="form-group">
+                <label for="legale-cert-nome">Nome e Cognome del firmatario:</label>
+                <input type="text" id="legale-cert-nome" name="legale-cert-nome" placeholder="Nome e cognome come da certificato">
+              </div>
+              <div class="form-group">
+                <label for="legale-cert-cf">Codice Fiscale del firmatario:</label>
+                <input type="text" id="legale-cert-cf" name="legale-cert-cf" placeholder="Codice fiscale" maxlength="16">
+              </div>
+              <div class="form-group">
+                <label for="legale-cert-provider">Provider Firma Digitale:</label>
+                <select id="legale-cert-provider" name="legale-cert-provider">
+                  <option value="" disabled selected>Seleziona il provider</option>
+                  <option value="InfoCert">InfoCert</option>
+                  <option value="Aruba">Aruba</option>
+                  <option value="Poste Italiane">Poste Italiane</option>
+                  <option value="Namirial">Namirial</option>
+                  <option value="Actalis">Actalis</option>
+                  <option value="Intesa Sanpaolo">Intesa Sanpaolo</option>
+                  <option value="Altro">Altro</option>
+                </select>
+              </div>
+              <div class="certified-note"><small>Confermando l'invio, si dichiara che il documento sarà firmato digitalmente con un certificato qualificato ai sensi del Regolamento eIDAS (UE 910/2014).</small></div>
+            </div>
+
+          </div>
+        </section>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-submit">Invia iscrizione</button>
+        </div>
+
+      </form>
+    </main>
+
+    <!-- Modal Successo Iscrizione -->
+    <div id="success-modal" class="modal-overlay" style="display:none;">
+      <div class="modal-content success-modal-content">
+        <div class="success-icon">&#10004;</div>
+        <h3 class="modal-title success-title">Iscrizione Perfezionata con Successo!</h3>
+        <div class="success-message">
+          <p>Grazie per aver scelto <strong>IMBC Fire & Safety Academy</strong>!</p>
+          <p>La tua iscrizione al corso antincendio è stata ricevuta e sarà elaborata a breve.</p>
+          <p>Riceverai una conferma all'indirizzo email indicato.</p>
+          <p class="success-note">Per qualsiasi informazione, contattaci a <a href="mailto:info@imbcacademy.it">info@imbcacademy.it</a></p>
+        </div>
+        <div class="success-buttons">
+          <button type="button" class="btn-print-pdf" onclick="downloadRegistrationPDF()">Stampa PDF</button>
+          <button type="button" class="btn-submit" onclick="closeSuccessModal()">Chiudi</button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© IMBC Fire & Safety Academy</p>
+    </footer>
+  </div>
+
+  <!-- Librerie esterne -->
+  <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- Script principale esterno (se vuoi usare script.js) -->
+  <script src="script.js"></script>
+
+  <!-- Script inline minimo per funzionamento base; spostalo in script.js se preferisci -->
+  <script>
+  (function(){
+    // Mappatura prezzi per corso (modificare se necessario)
+    const priceMap = {
+      "Antincendio livello 1 – 4 ore": 30,
+      "Antincendio livello 2 – 8 ore": 60,
+      "Antincendio livello 3 – 16 ore": 120,
+      "Aggiornamento livello 1 – 2 ore": 25,
+      "Aggiornamento livello 2 – 5 ore": 45,
+      "Aggiornamento livello 3 – 8 ore": 80
+    };
+
+    const iscrForm = document.getElementById('iscrizione-form');
+    const tipoPrivato = document.getElementById('tipo-privato');
+    const tipoAzienda = document.getElementById('tipo-azienda');
+    const datiAziendaSection = document.getElementById('dati-azienda-section');
+    const firmaLegaleSection = document.getElementById('firma-legale-section');
+    const aggiungiPartecipanteContainer = document.getElementById('aggiungi-partecipante-container');
+    const partecipantiContainer = document.getElementById('partecipanti-container');
+    const corsoSelect = document.getElementById('corso');
+    const prezzoInput = document.getElementById('prezzo');
+    const totaleContainer = document.getElementById('totale-container');
+    const totaleInput = document.getElementById('totale');
+    const bonificoDetails = document.getElementById('bonifico-details');
+    const cartaDetails = document.getElementById('carta-details');
+    const successModal = document.getElementById('success-modal');
+    const contattiModal = document.getElementById('contatti-modal');
+    const dataPrivacyInput = document.getElementById('data-privacy');
+
+    // SignaturePad instances
+    const signaturePads = {};
+
+    // Set privacy date to today
+    function setPrivacyDate() {
+      const d = new Date();
+      const iso = d.toLocaleDateString('it-IT');
+      if (dataPrivacyInput) dataPrivacyInput.value = iso;
+    }
+    setPrivacyDate();
+
+    // Toggle Privato/Azienda UI
+    function updateTipoIscrizione() {
+      const isAzienda = tipoAzienda.checked;
+      datiAziendaSection.style.display = isAzienda ? '' : 'none';
+      firmaLegaleSection.style.display = isAzienda ? '' : 'none';
+      aggiungiPartecipanteContainer.style.display = isAzienda ? '' : 'none';
+
+      // Hide/show privato-only fields
+      document.querySelectorAll('.privato-only-field').forEach(el => {
+        el.style.display = isAzienda ? 'none' : '';
+        el.querySelectorAll('input,select').forEach(input => {
+          input.required = !isAzienda && input.hasAttribute('required');
+        });
+      });
+    }
+
+    tipoPrivato.addEventListener('change', updateTipoIscrizione);
+    tipoAzienda.addEventListener('change', updateTipoIscrizione);
+    updateTipoIscrizione();
+
+    // Payment method toggle
+    document.querySelectorAll('input[name="metodo-pagamento"]').forEach(r => {
+      r.addEventListener('change', () => {
+        const v = document.querySelector('input[name="metodo-pagamento"]:checked').value;
+        bonificoDetails.style.display = v === 'bonifico' ? '' : 'none';
+        cartaDetails.style.display = v === 'carta' ? '' : 'none';
+      });
+    });
+
+    // Course price calculation
+    function updatePrezzoETotale() {
+      const corso = corsoSelect.value;
+      const prezzo = priceMap[corso] || '';
+      prezzoInput.value = prezzo !== '' ? prezzo.toFixed(2) : '';
+      // Count partecipanti
+      const partecipanti = partecipantiContainer.querySelectorAll('.partecipante-section').length;
+      if (prezzo !== '' && partecipanti > 0) {
+        totaleContainer.style.display = '';
+        totaleInput.value = (prezzo * partecipanti).toFixed(2);
+      } else {
+        totaleContainer.style.display = 'none';
+        totaleInput.value = '';
+      }
+    }
+    corsoSelect.addEventListener('change', updatePrezzoETotale);
+
+    // Add/Remove partecipanti (indice progressivo)
+    let partecipanteIndex = 1;
+    function addPartecipante() {
+      partecipanteIndex++;
+      const idx = partecipanteIndex;
+      const wrapper = document.createElement('div');
+      wrapper.className = 'form-section partecipante-section';
+      wrapper.dataset.partecipanteIndex = idx;
+      wrapper.innerHTML = `
+        <h3 class="section-title">
+          <span class="partecipante-title">Dati Partecipante ${idx}</span>
+          <button type="button" class="btn-remove-partecipante" onclick="removePartecipante(this)">Rimuovi</button>
+        </h3>
+        <div class="form-group">
+          <label>Nome:</label>
+          <input type="text" name="partecipante-${idx}-nome" class="partecipante-nome" placeholder="Inserisci il nome" required>
+        </div>
+        <div class="form-group">
+          <label>Cognome:</label>
+          <input type="text" name="partecipante-${idx}-cognome" class="partecipante-cognome" placeholder="Inserisci il cognome" required>
+        </div>
+        <div class="form-group">
+          <label>Email:</label>
+          <input type="email" name="partecipante-${idx}-email" class="partecipante-email" placeholder="Inserisci l'email" required>
+        </div>
+        <div class="form-group">
+          <label>Codice Fiscale:</label>
+          <input type="text" name="partecipante-${idx}-codice-fiscale" class="partecipante-codice-fiscale" maxlength="16" placeholder="Inserisci il codice fiscale" required>
+          <div class="error-message codice-fiscale-error" style="display:none;">Il codice fiscale deve contenere esattamente 16 caratteri.</div>
+        </div>
         <div class="form-group">
           <label>Profilo Professionale / Mansione:</label>
-          <input type="text" class="partecipante-profilo" name="partecipante-1-profilo" placeholder="Es. Responsabile sicurezza, Operaio, Tecnico..." required>
+          <input type="text" name="partecipante-${idx}-profilo" class="partecipante-profilo" placeholder="Es. Responsabile sicurezza" required>
         </div>
-
-        <div class="form-group privato-only-field">
-          <label>Settore di Appartenenza:</label>
-          <select class="partecipante-settore" name="partecipante-1-settore" required>
-            <option value="" disabled selected>Seleziona settore</option>
-            <option value="Industria manifatturiera">Industria manifatturiera</option>
-            <option value="Edilizia e costruzioni">Edilizia e costruzioni</option>
-            <option value="Commercio">Commercio</option>
-            <option value="Sanità">Sanità</option>
-            <option value="Istruzione">Istruzione</option>
-            <option value="Trasporti e logistica">Trasporti e logistica</option>
-            <option value="Alberghiero e ristorazione">Alberghiero e ristorazione</option>
-            <option value="Servizi">Servizi</option>
-            <option value="Pubblica Amministrazione">Pubblica Amministrazione</option>
-            <option value="Agricoltura">Agricoltura</option>
-            <option value="Altro">Altro</option>
-          </select>
-        </div>
-
-        <div class="signature-container partecipante-firma-container privato-only-signature">
+        <div class="signature-container partecipante-firma-container">
           <label>Firma del Partecipante:</label>
           <div class="signature-type-toggle">
             <label class="signature-type-option">
-              <input type="radio" name="partecipante-1-signature-type" value="draw" checked>
-              <span>Disegna firma</span>
+              <input type="radio" name="partecipante-${idx}-signature-type" value="draw" checked> Disegna firma
             </label>
             <label class="signature-type-option">
-              <input type="radio" name="partecipante-1-signature-type" value="text">
-              <span>Scrivi il testo</span>
+              <input type="radio" name="partecipante-${idx}-signature-type" value="text"> Scrivi il testo
             </label>
           </div>
           <div class="signature-draw-container">
-            <canvas class="partecipante-signature-pad" width="400" height="150"></canvas>
+            <canvas class="partecipante-signature-pad" id="partecipante-${idx}-signature-pad" width="400" height="150"></canvas>
             <button type="button" class="btn-secondary" onclick="clearPartecipanteSignature(this)">Cancella firma</button>
           </div>
-          <div class="signature-text-container" style="display: none;">
+          <div class="signature-text-container" style="display:none;">
             <input type="text" class="signature-text-input" placeholder="Scrivi nome e cognome per generare la firma">
             <canvas class="signature-text-preview" width="400" height="150"></canvas>
           </div>
         </div>
-      </div>
-    </div>
+      `;
+      partecipantiContainer.appendChild(wrapper);
+      // Initialize signature pad for new participant
+      initSignaturePadForCanvas(document.getElementById(`partecipante-${idx}-signature-pad`));
+      updatePrezzoETotale();
+    }
 
-    <!-- Pulsante Aggiungi Partecipante (visibile solo per aziende) -->
-    <div id="aggiungi-partecipante-container" style="display: none;">
-      <button type="button" class="btn-add-partecipante" onclick="addPartecipante()">
-        + Aggiungi Partecipante
-      </button>
-    </div>
+    // Expose removePartecipante to window for inline onclick
+    window.removePartecipante = function(btn) {
+      const section = btn.closest('.partecipante-section');
+      if (section) {
+        section.remove();
+        updatePrezzoETotale();
+      }
+    };
 
-    <div class="form-section">
-      <h3 class="section-title">Dettagli Corso</h3>
+    // Clear partecipante signature (button receives the button element)
+    window.clearPartecipanteSignature = function(btn) {
+      const canvas = btn.closest('.signature-draw-container').querySelector('canvas');
+      if (canvas && signaturePads[canvas.id]) {
+        signaturePads[canvas.id].clear();
+      }
+    };
 
-      <div class="form-group">
-        <label for="corso">Titolo Corso:</label>
-        <select id="corso" name="corso" required>
-          <option value="" disabled selected>Seleziona corso</option>
-          <option value="Antincendio livello 1 – 4 ore">Antincendio livello 1 – 4 ore</option>
-          <option value="Antincendio livello 2 – 8 ore">Antincendio livello 2 – 8 ore</option>
-          <option value="Antincendio livello 3 – 16 ore">Antincendio livello 3 – 16 ore</option>
-          <option value="Aggiornamento livello 1 – 2 ore">Aggiornamento livello 1 – 2 ore</option>
-          <option value="Aggiornamento livello 2 – 5 ore">Aggiornamento livello 2 – 5 ore</option>
-          <option value="Aggiornamento livello 3 – 8 ore">Aggiornamento livello 3 – 8 ore</option>
-        </select>
-      </div>
+    // Clear privacy signature
+    window.clearPrivacySignature = function() {
+      const c = document.getElementById('privacy-signature-pad');
+      if (c && signaturePads[c.id]) signaturePads[c.id].clear();
+    };
 
-      <div class="form-group">
-        <label for="prezzo">Quota di partecipazione per persona (€):</label>
-        <input type="text" id="prezzo" name="prezzo" readonly>
-      </div>
+    window.clearLegaleSignature = function() {
+      const c = document.getElementById('legale-signature-pad');
+      if (c && signaturePads[c.id]) signaturePads[c.id].clear();
+    };
 
-      <div class="form-group" id="totale-container" style="display: none;">
-        <label for="totale">Totale (€):</label>
-        <input type="text" id="totale" name="totale" readonly>
-        <small class="totale-info">Calcolato in base al numero di partecipanti</small>
-      </div>
-    </div>
+    // Initialize SignaturePad for given canvas element
+    function initSignaturePadForCanvas(canvas){
+      if (!canvas) return;
+      try {
+        const pad = new SignaturePad(canvas);
+        signaturePads[canvas.id] = pad;
+      } catch (e) {
+        console.warn('SignaturePad init failed:', e);
+      }
+    }
 
-    <!-- Termini e condizioni con checkbox obbligatorie -->
-    <div class="form-section">
-      <h3 class="section-title">Modalità di iscrizione e pagamento</h3>
-      <div class="terms">
-        <label class="term-item">
-          <input type="checkbox" class="required-checkbox" required>
-          <span class="term-text">1) L'iscrizione al corso è subordinata al pagamento anticipato dell'intero importo. Seleziona la modalità di pagamento preferita:</span>
-        </label>
+    // Initialize known signature canvases
+    document.querySelectorAll('canvas.partecipante-signature-pad').forEach(initSignaturePadForCanvas);
+    initSignaturePadForCanvas(document.getElementById('privacy-signature-pad'));
+    initSignaturePadForCanvas(document.getElementById('legale-signature-pad'));
 
-        <div class="payment-method-selection">
-          <label class="payment-method-option">
-            <input type="radio" name="metodo-pagamento" id="pagamento-bonifico" value="bonifico" required>
-            <span class="payment-method-label">
-              <strong>Bonifico Bancario</strong>
-            </span>
-          </label>
-          <label class="payment-method-option">
-            <input type="radio" name="metodo-pagamento" id="pagamento-carta" value="carta">
-            <span class="payment-method-label">
-              <strong>Carta di Credito / Debito / Google Pay</strong>
-            </span>
-          </label>
-        </div>
+    // Basic codice fiscale validation on blur
+    document.addEventListener('blur', function(e){
+      if (e.target && e.target.classList && e.target.classList.contains('partecipante-codice-fiscale')) {
+        const v = e.target.value.trim();
+        const err = e.target.parentElement.querySelector('.codice-fiscale-error');
+        if (v.length !== 16) {
+          if (err) err.style.display = '';
+        } else {
+          if (err) err.style.display = 'none';
+        }
+      }
+      if (e.target && e.target.id === 'partita-iva') {
+        const v = e.target.value.trim();
+        const err = document.getElementById('partita-iva-error');
+        if (v !== '' && !(v.length === 11 || v.length === 16)) {
+          if (err) err.style.display = '';
+        } else {
+          if (err) err.style.display = 'none';
+        }
+      }
+    }, true);
 
-        <div class="payment-bonifico-section" id="bonifico-details" style="display: none;">
-          <div class="payment-info-box">
-            <p><strong>Coordinate Bancarie:</strong></p>
-            <p>Intestatario: <strong>MICHELA COCCO</strong></p>
-            <p>Banca: <strong>BANCA FINDOMESTIC</strong></p>
-            <p>IBAN: <strong>IT65U0311514000000000005566</strong></p>
-          </div>
-        </div>
+    // Simple contact modal handlers
+    window.openContattiModal = function(){ contattiModal.style.display = ''; };
+    window.closeContattiModal = function(){ contattiModal.style.display = 'none'; };
 
-        <div class="payment-carta-section" id="carta-details" style="display: none;">
-          <div class="payment-info-box">
-            <p><strong>Pagamento con Carta di Credito / Debito / Google Pay</strong></p>
-            <p>Inserisci la tua email per ricevere il link di pagamento sicuro.</p>
-            <div class="form-group">
-              <label for="email-pagamento">Email per ricevere il link di pagamento:</label>
-              <input type="email" id="email-pagamento" name="email-pagamento" placeholder="Inserisci email per link di pagamento">
-            </div>
-          </div>
-        </div>
+    // Contatti form handler (simple)
+    window.submitContattiForm = function(e){
+      e.preventDefault();
+      alert('Segnalazione inviata. Grazie.');
+      closeContattiModal();
+    };
 
-        <label class="term-item">
-          <input type="checkbox" class="required-checkbox" required>
-          <span class="term-text">2) L'iscrizione si considera perfezionata al momento del ricevimento della scheda compilata e sottoscritta, unitamente alla copia della ricevuta di pagamento, inviati[...]
-        </label>
+    // Success modal controls
+    window.closeSuccessModal = function(){ successModal.style.display = 'none'; };
 
-        <label class="term-item">
-          <input type="checkbox" class="required-checkbox" required>
-          <span class="term-text">3) In caso di mancata presentazione, IMBC FIRE & SAFETY ACADEMY sarà autorizzata ad emettere fattura per l'intero importo e trattenere l'importo versato.</span>
-        </label>
+    // Download PDF placeholder (requires proper implementation)
+    window.downloadRegistrationPDF = function(){
+      alert('Funzionalità "Stampa PDF" non implementata in questa versione. Posso aggiungerla se vuoi.');
+    };
 
-        <label class="term-item">
-          <input type="checkbox" class="required-checkbox" required>
-          <span class="term-text">4) In caso di ritiro durante il corso, IMBC FIRE & SAFETY ACADEMY emetterà fattura per l'intero importo garantendo il diritto al materiale didattico distribuito.</sp[...]
-        </label>
+    // Initialize event listeners for dynamic elements
+    document.getElementById('corso').addEventListener('change', updatePrezzoETotale);
 
-        <label class="term-item">
-          <input type="checkbox" class="required-checkbox" required>
-          <span class="term-text">5) IMBC FIRE & SAFETY ACADEMY si riserva la facoltà di annullare o rinviare i corsi programmati. Ogni variazione sarà tempestivamente comunicata.</span>
-        </label>
-      </div>
-    </div>
+    // Form submit: send via fetch to Formspree (JSON)
+    iscrForm.addEventListener('submit', function(e){
+      e.preventDefault();
 
-    <!-- Informativa Privacy -->
-    <div class="form-section privacy-section">
-      <h3 class="section-title">Informativa Privacy</h3>
-      <div class="privacy-content">
-        <p><strong>Informativa Privacy – Iscrizione Corsi Antincendio IMBC</strong></p>
+      // Basic privacy consent check
+      const privacyConsent = document.querySelector('input[name="privacy-consent"]:checked');
+      if (!privacyConsent || privacyConsent.value !== 'autorizza') {
+        const msg = document.getElementById('privacy-error-message');
+        if (msg) msg.style.display = '';
+        return;
+      }
 
-        <p>Ai sensi degli artt. 13 e 14 del Regolamento UE 2016/679 (GDPR), IMBC FIRE & SAFETY ACADEMY, con sede legale in Vezzano Ligure (SP), 19020, via Caffaggio 1, rappresentata dal legale rappres[...]
+      // Prepare FormData
+      const formData = new FormData(iscrForm);
 
-        <ul>
-          <li>Gestione dell'iscrizione e partecipazione al corso, inclusa la generazione della scheda iscrizione e del PDF allegato.</li>
-          <li>Invio di comunicazioni relative all'attività formativa, inclusi aggiornamenti, materiali didattici, certificazioni e informazioni organizzative.</li>
-          <li>Adempimento di obblighi fiscali, contabili e normativi connessi all'erogazione dei corsi.</li>
-          <li>Comunicazione a soggetti terzi e autorità competenti: i dati possono essere comunicati qualora ciò sia richiesto da normative vigenti, controlli fiscali o ispettivi, obblighi giudiziari[...]
-        </ul>
+      // Attach signatures as images (data URLs) into hidden fields
+      // Privacy signature
+      const privacyCanvas = document.getElementById('privacy-signature-pad');
+      if (privacyCanvas && signaturePads[privacyCanvas.id] && !signaturePads[privacyCanvas.id].isEmpty()) {
+        formData.append('privacy-signature-image', signaturePads[privacyCanvas.id].toDataURL('image/png'));
+      }
 
-        <p><strong>Base giuridica del trattamento:</strong> il trattamento si basa sul tuo consenso espresso tramite spunta della checkbox presente nel modulo.</p>
+      // Legale signature
+      const legaleCanvas = document.getElementById('legale-signature-pad');
+      if (legaleCanvas && signaturePads[legaleCanvas.id] && !signaturePads[legaleCanvas.id].isEmpty()) {
+        formData.append('legale-signature-image', signaturePads[legaleCanvas.id].toDataURL('image/png'));
+      }
 
-        <p><strong>Modalità di trattamento:</strong> i dati saranno trattati elettronicamente tramite sistemi informatici sicuri (web-app, database interno, email aziendale), con misure tecniche e or[...]
+      // Partecipanti signatures
+      document.querySelectorAll('.partecipante-signature-pad').forEach(function(c){
+        if (c && signaturePads[c.id] && !signaturePads[c.id].isEmpty()) {
+          formData.append(c.id + '-image', signaturePads[c.id].toDataURL('image/png'));
+        }
+      });
 
-        <p><strong>Comunicazione dei dati a terzi:</strong> i dati non saranno ceduti a soggetti esterni per finalità commerciali. Possono essere comunicati solo a soggetti autorizzati e strettamente[...]
+      // Send via fetch to Formspree endpoint
+      fetch(iscrForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(function(response){
+        if (response.ok) {
+          // show success modal
+          successModal.style.display = '';
+          iscrForm.reset();
+          updateTipoIscrizione();
+          updatePrezzoETotale();
+        } else {
+          response.json().then(function(data){
+            alert('Errore invio: ' + (data.error || 'si prega di riprovare'));
+          }).catch(function(){
+            alert('Errore invio: si prega di riprovare');
+          });
+        }
+      }).catch(function(err){
+        console.error(err);
+        alert('Errore di rete durante l\'invio. Riprova più tardi.');
+      });
 
-        <p><strong>Conservazione dei dati:</strong> i dati saranno conservati per il tempo necessario a soddisfare le finalità di trattamento sopra indicate e comunque nel rispetto dei termini di leg[...]
+    });
 
-        <p><strong>Responsabile della Protezione dei Dati (DPO):</strong> non nominato, in quanto non obbligatorio per la tipologia e quantità di dati trattati.</p>
+    // Expose addPartecipante to global scope (used by button onclick)
+    window.addPartecipante = addPartecipante;
 
-        <p><strong>Diritti dell'interessato:</strong> puoi esercitare i diritti di accesso, rettifica, cancellazione, limitazione del trattamento, opposizione e portabilità dei dati (artt. 15-22 GDPR[...]
+  })();
+  </script>
 
-        <p><strong>Accettazione:</strong> spuntando la checkbox nel modulo confermi di aver preso visione dell'informativa e di fornire il consenso al trattamento dei tuoi dati personali per le finali[...]
-      </div>
-
-      <div class="privacy-date">
-        <label for="data-privacy">Data di sottoscrizione:</label>
-        <input type="text" id="data-privacy" name="data-privacy" readonly>
-      </div>
-
-      <div class="privacy-authorization">
-        <p><strong>Autorizzazione al trattamento dei dati personali:</strong></p>
-        <label class="radio-item">
-          <input type="radio" name="privacy-consent" id="privacy-autorizza" value="autorizza" required>
-          <span>Autorizzo il trattamento dei miei dati personali</span>
-        </label>
-        <label class="radio-item">
-          <input type="radio" name="privacy-consent" id="privacy-non-autorizza" value="non-autorizza">
-          <span>Non autorizzo il trattamento dei miei dati personali</span>
-        </label>
-        <div id="privacy-error-message" class="error-message" style="display: none;">
-          È impossibile procedere all'iscrizione al corso senza autorizzazione al trattamento dei dati personali.
-        </div>
-      </div>
-
-      <div class="signature-container">
-        <label>Firma per consenso privacy:</label>
-        <div class="signature-type-toggle">
-          <label class="signature-type-option">
-            <input type="radio" name="privacy-signature-type" value="draw" checked>
-            <span>Disegna firma</span>
-          </label>
-          <label class="signature-type-option">
-            <input type="radio" name="privacy-signature-type" value="text">
-            <span>Scrivi il testo</span>
-          </label>
-        </div>
-        <div class="signature-draw-container">
-          <canvas id="privacy-signature-pad" width="400" height="150"></canvas>
-          <button type="button" class="btn-secondary" onclick="clearPrivacySignature()">Cancella firma privacy</button>
-        </div>
-        <div class="signature-text-container" style="display: none;">
-          <input type="text" id="privacy-signature-text" class="signature-text-input" placeholder="Scrivi nome e cognome per generare la firma">
-          <canvas id="privacy-signature-text-preview" class="signature-text-preview" width="400" height="150"></canvas>
-        </div>
-      </div>
-    </div>
-
-    <!-- Firma Legale Rappresentante (solo per Azienda) -->
-    <div class="form-section" id="firma-legale-section" style="display: none;">
-      <h3 class="section-title">Firma del Legale Rappresentante e/o Responsabile Aziendale</h3>
-      <div class="signature-container">
-        <label>Firma del Legale Rappresentante:</label>
-        <div class="signature-type-toggle signature-type-toggle-3">
-          <label class="signature-type-option">
-            <input type="radio" name="legale-signature-type" value="draw" checked>
-            <span>Disegna firma</span>
-          </label>
-          <label class="signature-type-option">
-            <input type="radio" name="legale-signature-type" value="text">
-            <span>Scrivi il testo</span>
-          </label>
-          <label class="signature-type-option signature-type-option-certified">
-            <input type="radio" name="legale-signature-type" value="certified">
-            <span>Firma Certificata</span>
-          </label>
-        </div>
-        <div class="signature-draw-container">
-          <canvas id="legale-signature-pad" width="400" height="150"></canvas>
-          <button type="button" class="btn-secondary" onclick="clearLegaleSignature()">Cancella firma</button>
-        </div>
-        <div class="signature-text-container" style="display: none;">
-          <input type="text" id="legale-signature-text" class="signature-text-input" placeholder="Scrivi nome e cognome per generare la firma">
-          <canvas id="legale-signature-text-preview" class="signature-text-preview" width="400" height="150"></canvas>
-        </div>
-        <div class="signature-certified-container" style="display: none;">
-          <div class="certified-info">
-            <p><strong>Firma Digitale Certificata</strong></p>
-            <p>Inserisci i dati del certificato di firma digitale qualificata (es. firma con smart card, token USB, o firma remota).</p>
-          </div>
-          <div class="form-group">
-            <label for="legale-cert-nome">Nome e Cognome del firmatario:</label>
-            <input type="text" id="legale-cert-nome" placeholder="Nome e cognome come da certificato">
-          </div>
-          <div class="form-group">
-            <label for="legale-cert-cf">Codice Fiscale del firmatario:</label>
-            <input type="text" id="legale-cert-cf" placeholder="Codice fiscale" maxlength="16">
-          </div>
-          <div class="form-group">
-            <label for="legale-cert-provider">Provider Firma Digitale:</label>
-            <select id="legale-cert-provider">
-              <option value="" disabled selected>Seleziona il provider</option>
-              <option value="InfoCert">InfoCert</option>
-              <option value="Aruba">Aruba</option>
-              <option value="Poste Italiane">Poste Italiane</option>
-              <option value="Namirial">Namirial</option>
-              <option value="Actalis">Actalis</option>
-              <option value="Intesa Sanpaolo">Intesa Sanpaolo</option>
-              <option value="Altro">Altro</option>
-            </select>
-          </div>
-          <div class="certified-note">
-            <p><small>Confermando l'invio, si dichiara che il documento sarà firmato digitalmente con un certificato qualificato ai sensi del Regolamento eIDAS (UE 910/2014).</small></p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <button type="submit" class="btn-submit">Invia iscrizione</button>
-  </form>
-
-  <!-- Modal Successo Iscrizione -->
-  <div id="success-modal" class="modal-overlay" style="display: none;">
-    <div class="modal-content success-modal-content">
-      <div class="success-icon">&#10004;</div>
-      <h3 class="modal-title success-title">Iscrizione Perfezionata con Successo!</h3>
-      <div class="success-message">
-        <p>Grazie per aver scelto <strong>IMBC Fire & Safety Academy</strong>!</p>
-        <p>La tua iscrizione al corso antincendio è stata ricevuta e sarà elaborata a breve.</p>
-        <p>Riceverai una conferma all'indirizzo email indicato.</p>
-        <p class="success-note">Per qualsiasi informazione, contattaci a <a href="mailto:info@imbcacademy.it">info@imbcacademy.it</a></p>
-      </div>
-      <div class="success-buttons">
-        <button type="button" class="btn-print-pdf" onclick="downloadRegistrationPDF()">Stampa PDF</button>
-        <button type="button" class="btn-submit" onclick="closeSuccessModal()">Chiudi</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-  <!-- rebuild -->
-
-<!-- Libreria Signature Pad -->
-<script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
-
-<!-- Libreria SheetJS per generazione Excel -->
-<script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
-
-<!-- Libreria jsPDF per generazione PDF -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-<!-- Script principale -->
-<script src="script.js"></script>
-    <!-- Altri contenuti del form -->
-
-<!-- Modal Successo Iscrizione -->
-<div id="success-modal" class="modal-overlay" style="display: none;">
-    <div class="modal-content success-modal-content">
-        <div class="success-icon">&#10004;</div>
-        <h3 class="modal-title success-title">Iscrizione Perfezionata con Successo!</h3>
-        <div class="success-message">
-            <p>Grazie per aver scelto <strong>IMBC Fire & Safety Academy</strong>!</p>
-            <p>La tua iscrizione al corso antincendio è stata ricevuta e sarà elaborata a breve.</p>
-            <p>Riceverai una conferma all'indirizzo email indicato.</p>
-            <p class="success-note">Per qualsiasi informazione, contattaci a <a href="mailto:info@imbcacademy.it">info@imbcacademy.it</a></p>
-        </div>
-        <div class="success-buttons">
-            <button type="button" class="btn-download-pdf" onclick="downloadRegistrationPDF()">Scarica PDF</button>
-            <button type="button" class="btn-submit" onclick="closeSuccessModal()">Chiudi</button>
 </body>
 </html>
