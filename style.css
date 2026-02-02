@@ -1232,3 +1232,70 @@ button {
   opacity: 0.7;
   cursor: wait;
 }
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-trasparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Assicurati che la modal sia sopra tutto */
+}
+
+/* Modal content */
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Icona di successo */
+.success-icon {
+  font-size: 48px;
+  color: green;
+}
+
+/* Titolo */
+.modal-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Messaggio di successo */
+.success-message p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Bottone di chiusura e download */
+.success-buttons button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.success-buttons button:hover {
+  background-color: #218838;
+}
+
+/* Bottone Chiudi */
+.success-buttons .btn-submit {
+  background-color: #dc3545;
+}
+
+.success-buttons .btn-submit:hover {
+  background-color: #c82333;
+}
