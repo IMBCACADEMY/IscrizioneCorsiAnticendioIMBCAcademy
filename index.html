@@ -62,6 +62,17 @@
     <!-- Hidden field for Netlify Forms -->
     <input type="hidden" name="form-name" value="iscrizione-corsi">
 
+    <!-- INTEGRAZIONE: campi semplici Nome / Email richiesti dall'utente -->
+    <!-- Questi campi verranno inviati a Formspree insieme agli altri dati -->
+    <div class="form-group compact-contact-fields">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" placeholder="Nome" required>
+    </div>
+    <div class="form-group compact-contact-fields">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Email" required>
+    </div>
+
     <!-- Honeypot field for spam prevention -->
     <p class="hidden" style="display:none;">
       <label>Non compilare questo campo: <input name="bot-field" /></label>
@@ -314,7 +325,7 @@
 
         <label class="term-item">
           <input type="checkbox" class="required-checkbox" required>
-          <span class="term-text">2) L'iscrizione si considera perfezionata al momento del ricevimento della scheda compilata e sottoscritta, unitamente alla copia della ricevuta di pagamento, inviati a INFO@IMBCACADEMY.IT</span>
+          <span class="term-text">2) L'iscrizione si considera perfezionata al momento del ricevimento della scheda compilata e sottoscritta, unitamente alla copia della ricevuta di pagamento, inviati[...]
         </label>
 
         <label class="term-item">
@@ -324,7 +335,7 @@
 
         <label class="term-item">
           <input type="checkbox" class="required-checkbox" required>
-          <span class="term-text">4) In caso di ritiro durante il corso, IMBC FIRE & SAFETY ACADEMY emetterà fattura per l'intero importo garantendo il diritto al materiale didattico distribuito.</span>
+          <span class="term-text">4) In caso di ritiro durante il corso, IMBC FIRE & SAFETY ACADEMY emetterà fattura per l'intero importo garantendo il diritto al materiale didattico distribuito.</sp[...]
         </label>
 
         <label class="term-item">
@@ -340,28 +351,28 @@
       <div class="privacy-content">
         <p><strong>Informativa Privacy – Iscrizione Corsi Antincendio IMBC</strong></p>
 
-        <p>Ai sensi degli artt. 13 e 14 del Regolamento UE 2016/679 (GDPR), IMBC FIRE & SAFETY ACADEMY, con sede legale in Vezzano Ligure (SP), 19020, via Caffaggio 1, rappresentata dal legale rappresentante Michela Cocco, nata a La Spezia il 23/03/1985, CF: CCCMHL85C63E463Q, in qualità di Titolare del trattamento dei dati personali, ti informa che i dati personali forniti tramite il modulo di iscrizione (nome, cognome, email, telefono, corso selezionato, eventuali note e firma digitale) saranno trattati nel rispetto della normativa vigente per le seguenti finalità:</p>
+        <p>Ai sensi degli artt. 13 e 14 del Regolamento UE 2016/679 (GDPR), IMBC FIRE & SAFETY ACADEMY, con sede legale in Vezzano Ligure (SP), 19020, via Caffaggio 1, rappresentata dal legale rappres[...]
 
         <ul>
           <li>Gestione dell'iscrizione e partecipazione al corso, inclusa la generazione della scheda iscrizione e del PDF allegato.</li>
           <li>Invio di comunicazioni relative all'attività formativa, inclusi aggiornamenti, materiali didattici, certificazioni e informazioni organizzative.</li>
           <li>Adempimento di obblighi fiscali, contabili e normativi connessi all'erogazione dei corsi.</li>
-          <li>Comunicazione a soggetti terzi e autorità competenti: i dati possono essere comunicati qualora ciò sia richiesto da normative vigenti, controlli fiscali o ispettivi, obblighi giudiziari o altre disposizioni di legge, oppure qualora sia necessario al fine dell'erogazione del corso, della gestione organizzativa e della documentazione didattica.</li>
+          <li>Comunicazione a soggetti terzi e autorità competenti: i dati possono essere comunicati qualora ciò sia richiesto da normative vigenti, controlli fiscali o ispettivi, obblighi giudiziari[...]
         </ul>
 
         <p><strong>Base giuridica del trattamento:</strong> il trattamento si basa sul tuo consenso espresso tramite spunta della checkbox presente nel modulo.</p>
 
-        <p><strong>Modalità di trattamento:</strong> i dati saranno trattati elettronicamente tramite sistemi informatici sicuri (web-app, database interno, email aziendale), con misure tecniche e organizzative idonee a garantire riservatezza, integrità e disponibilità.</p>
+        <p><strong>Modalità di trattamento:</strong> i dati saranno trattati elettronicamente tramite sistemi informatici sicuri (web-app, database interno, email aziendale), con misure tecniche e or[...]
 
-        <p><strong>Comunicazione dei dati a terzi:</strong> i dati non saranno ceduti a soggetti esterni per finalità commerciali. Possono essere comunicati solo a soggetti autorizzati e strettamente necessari per la gestione dei corsi (es. docenti, consulenti, fornitori di servizi tecnici come email o hosting) nel rispetto del GDPR.</p>
+        <p><strong>Comunicazione dei dati a terzi:</strong> i dati non saranno ceduti a soggetti esterni per finalità commerciali. Possono essere comunicati solo a soggetti autorizzati e strettamente[...]
 
-        <p><strong>Conservazione dei dati:</strong> i dati saranno conservati per il tempo necessario a soddisfare le finalità di trattamento sopra indicate e comunque nel rispetto dei termini di legge.</p>
+        <p><strong>Conservazione dei dati:</strong> i dati saranno conservati per il tempo necessario a soddisfare le finalità di trattamento sopra indicate e comunque nel rispetto dei termini di leg[...]
 
         <p><strong>Responsabile della Protezione dei Dati (DPO):</strong> non nominato, in quanto non obbligatorio per la tipologia e quantità di dati trattati.</p>
 
-        <p><strong>Diritti dell'interessato:</strong> puoi esercitare i diritti di accesso, rettifica, cancellazione, limitazione del trattamento, opposizione e portabilità dei dati (artt. 15-22 GDPR) contattando il Titolare del trattamento all'indirizzo email <a href="mailto:info@imbcacademy.it">info@imbcacademy.it</a></p>
+        <p><strong>Diritti dell'interessato:</strong> puoi esercitare i diritti di accesso, rettifica, cancellazione, limitazione del trattamento, opposizione e portabilità dei dati (artt. 15-22 GDPR[...]
 
-        <p><strong>Accettazione:</strong> spuntando la checkbox nel modulo confermi di aver preso visione dell'informativa e di fornire il consenso al trattamento dei tuoi dati personali per le finalità indicate.</p>
+        <p><strong>Accettazione:</strong> spuntando la checkbox nel modulo confermi di aver preso visione dell'informativa e di fornire il consenso al trattamento dei tuoi dati personali per le finali[...]
       </div>
 
       <div class="privacy-date">
