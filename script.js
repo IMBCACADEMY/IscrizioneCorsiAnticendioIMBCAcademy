@@ -1345,3 +1345,46 @@ function lockForm() {
     submitBtn.style.backgroundColor = '#4caf50';
   }
 }
+// ============ FORM SUBMIT (Formspree) ============
+
+const iscrizioneForm = document.getElementById("iscrizione-form");
+const successModal = document.getElementById("success-modal");
+
+iscrizioneForm.addEventListener("submit", function(e) {
+  e.preventDefault(); // blocca l'invio normale
+
+  const formData = new FormData(iscrizioneForm);
+
+  fetch(iscrizioneForm.action, {
+    method: "POST",
+    body: formData,
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+  .then(response => {
+    if (response.ok) {
+      // mostra modal successo
+      successModal.style.display = "block";
+      // nasconde form
+      iscrizioneForm.style.display = "none";
+    } else {
+      alert("Errore invio. Controlla i campi e riprova.");
+    }
+  })
+  .catch(error => {
+    alert("Errore di rete. Riprova più tardi.");
+  });
+});
+
+// Chiudi modal successo
+function closeSuccessModal() {
+  successModal.style.display = "none";
+}
+
+// Funzione per scaricare PDF (se già presente nel tuo script)
+function downloadRegistrationPDF() {
+  // qui puoi chiamare la tua funzione esistente che genera il PDF
+  // se non esiste, dimmelo e te la scrivo io
+  alert("Qui va la funzione per generare il PDF.");
+}
