@@ -7,11 +7,10 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    /* Piccole regole inline per rendere gli errori visibili senza style.css aggiornato */
     .error-message { color: #a00; display: none; margin-top: 6px; }
     .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:1000; }
-    .modal-content { background:#fff; padding:20px; border-radius:6px; max-width:90%; width:600px; }
-    .signature-text-preview, .partecipante-signature-pad, canvas { max-width:100%; }
+    .modal-content { background:#fff; padding:20px; border-radius:6px; max-width:90%; width:700px; }
+    canvas { max-width:100%; }
   </style>
 </head>
 <body>
@@ -29,7 +28,7 @@
     </header>
 
     <!-- Modal CONTATTI -->
-    <div id="contatti-modal" class="modal-overlay" style="display:none;">
+    <div id="contatti-modal" class="modal-overlay" style="display:none;">  
       <div class="modal-content">
         <button type="button" class="modal-close" onclick="closeContattiModal()">&times;</button>
         <h3 class="modal-title">Contatti e Segnalazione Problemi</h3>
@@ -294,6 +293,44 @@
           </div>
         </section>
 
+        <!-- Informativa Privacy (testo + autorizzazione SENZA firma) -->
+        <section class="form-section privacy-section">
+          <h3 class="section-title">Informativa Privacy</h3>
+          <div class="privacy-content">
+            <p><strong>Informativa Privacy – Iscrizione Corsi Antincendio IMBC</strong></p>
+            <p>Ai sensi degli artt. 13 e 14 del Regolamento UE 2016/679 (GDPR), IMBC FIRE & SAFETY ACADEMY, con sede legale in Vezzano Ligure (SP), 19020, via Caffaggio 1, tratta i dati forniti per le finalità connesse alla gestione delle iscrizioni ai corsi antincendio.</p>
+            <ul>
+              <li>Gestione dell'iscrizione e partecipazione al corso, inclusa la generazione della scheda iscrizione e del PDF allegato.</li>
+              <li>Invio di comunicazioni relative all'attività formativa, materiali didattici, certificazioni e informazioni organizzative.</li>
+              <li>Adempimenti fiscali, contabili e normativi connessi all'erogazione dei corsi.</li>
+              <li>Comunicazione a soggetti terzi e autorità competenti quando richiesto dalla normativa.</li>
+            </ul>
+            <p><strong>Base giuridica del trattamento:</strong> il trattamento si basa sul consenso espresso tramite le checkbox presenti nel modulo.</p>
+            <p><strong>Modalità di trattamento:</strong> i dati saranno trattati elettronicamente tramite sistemi informatici sicuri e conservati secondo le misure di sicurezza previste dalla normativa.</p>
+            <p><strong>Conservazione dei dati:</strong> i dati saranno conservati per il tempo necessario a soddisfare le finalità di trattamento e in conformità con le normative vigenti.</p>
+            <p><strong>Diritti dell'interessato:</strong> puoi esercitare i diritti di accesso, rettifica, cancellazione, limitazione del trattamento, opposizione e portabilità dei dati (artt. 15-22 GDPR) contattando il Titolare del trattamento all'indirizzo email info@imbcacademy.it.</p>
+            <p><strong>Accettazione:</strong> spuntando le checkbox richieste nel modulo confermi di aver preso visione dell'informativa e di fornire il consenso al trattamento dei dati personali per le finalità indicate.</p>
+          </div>
+
+          <div class="privacy-date">
+            <label for="data-privacy">Data di sottoscrizione:</label>
+            <input type="text" id="data-privacy" name="data-privacy" readonly>
+          </div>
+
+          <div class="privacy-authorization">
+            <p><strong>Autorizzazione al trattamento dei dati personali:</strong></p>
+            <label class="radio-item">
+              <input type="radio" name="privacy-consent" id="privacy-autorizza" value="autorizza" required>
+              <span>Autorizzo il trattamento dei miei dati personali</span>
+            </label>
+            <label class="radio-item">
+              <input type="radio" name="privacy-consent" id="privacy-non-autorizza" value="non-autorizza">
+              <span>Non autorizzo il trattamento dei miei dati personali</span>
+            </label>
+            <div id="privacy-error-message" class="error-message">È impossibile procedere all'iscrizione al corso senza autorizzazione al trattamento dei dati personali.</div>
+          </div>
+        </section>
+
         <!-- FIRMA UNICA (in fondo) -->
         <section class="form-section" id="unica-firma-section">
           <h3 class="section-title">Firma di Autenticazione / Metodo Alternativo</h3>
@@ -301,30 +338,16 @@
           <div class="form-group">
             <label>Scegli il metodo di autenticazione:</label>
             <div class="signature-type-toggle">
-              <label class="signature-type-option">
-                <input type="radio" name="unica-signature-type" value="draw" checked>
-                <span>Disegna firma</span>
-              </label>
-              <label class="signature-type-option">
-                <input type="radio" name="unica-signature-type" value="text">
-                <span>Scrivi il testo (firma)</span>
-              </label>
-              <label class="signature-type-option">
-                <input type="radio" name="unica-signature-type" value="certified">
-                <span>Firma certificata</span>
-              </label>
-              <label class="signature-type-option">
-                <input type="radio" name="unica-signature-type" value="alternative">
-                <span>Autenticazione alternativa (dichiarazione + timestamp)</span>
-              </label>
+              <label class="signature-type-option"><input type="radio" name="unica-signature-type" value="draw" checked> Disegna firma</label>
+              <label class="signature-type-option"><input type="radio" name="unica-signature-type" value="text"> Scrivi il testo (firma)</label>
+              <label class="signature-type-option"><input type="radio" name="unica-signature-type" value="certified"> Firma certificata</label>
+              <label class="signature-type-option"><input type="radio" name="unica-signature-type" value="alternative"> Autenticazione alternativa</label>
             </div>
           </div>
 
           <div class="signature-draw-container unica-signature-draw">
             <canvas id="unica-firma-pad" width="400" height="150" style="border:1px solid #ccc;"></canvas>
-            <div>
-              <button type="button" class="btn-secondary" onclick="clearUnicaFirma()">Cancella firma</button>
-            </div>
+            <div><button type="button" class="btn-secondary" onclick="clearUnicaFirma()">Cancella firma</button></div>
             <div id="unica-draw-error" class="error-message">Disegna la firma prima di inviare.</div>
           </div>
 
@@ -360,7 +383,6 @@
           </div>
 
           <div class="signature-alternative-container unica-signature-alt" style="display:none;">
-            <p>Se scegli l'autenticazione alternativa, inserisci nome e cognome e conferma la dichiarazione: verrà memorizzata la dichiarazione con timestamp (questa soluzione non sostituisce la firma digitale certificata).</p>
             <div class="form-group">
               <label for="alt-auth-name">Nome e Cognome:</label>
               <input type="text" id="alt-auth-name" name="alt-auth-name" placeholder="Inserisci nome e cognome">
@@ -403,14 +425,11 @@
     </footer>
   </div>
 
-  <!-- Librerie esterne -->
   <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-  <!-- Script inline -->
   <script>
   (function(){
-    // Prezzi aggiornati
     const priceMap = {
       "Antincendio livello 1 – 4 ore": 60,
       "Antincendio livello 2 – 8 ore": 85,
@@ -420,12 +439,10 @@
       "Aggiornamento livello 3 – 8 ore": 90
     };
 
-    // Elementi principali
     const iscrForm = document.getElementById('iscrizione-form');
     const tipoPrivato = document.getElementById('tipo-privato');
     const tipoAzienda = document.getElementById('tipo-azienda');
     const datiAziendaSection = document.getElementById('dati-azienda-section');
-    const firmaLegaleSection = document.getElementById('firma-legale-section');
     const aggiungiPartecipanteContainer = document.getElementById('aggiungi-partecipante-container');
     const partecipantiContainer = document.getElementById('partecipanti-container');
     const corsoSelect = document.getElementById('corso');
@@ -438,285 +455,80 @@
     const contattiModal = document.getElementById('contatti-modal');
     const dataPrivacyInput = document.getElementById('data-privacy');
 
-    // SignaturePad instances
     const signaturePads = {};
 
-    // Set privacy date to today
-    function setPrivacyDate() {
-      const d = new Date();
-      const iso = d.toLocaleDateString('it-IT');
-      if (dataPrivacyInput) dataPrivacyInput.value = iso;
-    }
+    function setPrivacyDate(){ const d=new Date(); if(dataPrivacyInput) dataPrivacyInput.value = d.toLocaleDateString('it-IT'); }
     setPrivacyDate();
 
-    // Toggle Privato/Azienda UI
-    function updateTipoIscrizione() {
+    function updateTipoIscrizione(){
       const isAzienda = tipoAzienda.checked;
       datiAziendaSection.style.display = isAzienda ? '' : 'none';
-      firmaLegaleSection.style.display = isAzienda ? '' : 'none';
       aggiungiPartecipanteContainer.style.display = isAzienda ? '' : 'none';
-
-      document.querySelectorAll('.privato-only-field').forEach(el => {
-        el.style.display = isAzienda ? 'none' : '';
-        el.querySelectorAll('input,select').forEach(input => {
-          if (isAzienda) input.required = false;
-        });
-      });
+      document.querySelectorAll('.privato-only-field').forEach(el=>{ el.style.display = isAzienda ? 'none':''; el.querySelectorAll('input,select').forEach(i=>{ if(isAzienda) i.required=false; }); });
     }
     tipoPrivato.addEventListener('change', updateTipoIscrizione);
     tipoAzienda.addEventListener('change', updateTipoIscrizione);
     updateTipoIscrizione();
 
-    // Payment method toggle
-    document.querySelectorAll('input[name="metodo-pagamento"]').forEach(r => {
-      r.addEventListener('change', () => {
-        const sel = document.querySelector('input[name="metodo-pagamento"]:checked');
-        const v = sel ? sel.value : '';
-        bonificoDetails.style.display = v === 'bonifico' ? '' : 'none';
-        cartaDetails.style.display = v === 'carta' ? '' : 'none';
-      });
-    });
+    document.querySelectorAll('input[name="metodo-pagamento"]').forEach(r=>r.addEventListener('change',()=>{ const sel=document.querySelector('input[name="metodo-pagamento"]:checked'); const v=sel?sel.value:''; bonificoDetails.style.display=v==='bonifico'? '':''; cartaDetails.style.display=v==='carta'? 'none' : 'none'; }));
 
-    // Prezzo e totale
-    function updatePrezzoETotale() {
-      const corso = corsoSelect.value;
-      const prezzo = priceMap[corso] || '';
-      prezzoInput.value = prezzo !== '' ? prezzo.toFixed(2) : '';
-      const partecipanti = partecipantiContainer.querySelectorAll('.partecipante-section').length;
-      if (prezzo !== '' && partecipanti > 0) {
-        totaleContainer.style.display = '';
-        totaleInput.value = (prezzo * partecipanti).toFixed(2);
-      } else {
-        totaleContainer.style.display = 'none';
-        totaleInput.value = '';
-      }
-    }
+    function updatePrezzoETotale(){ const corso=corsoSelect.value; const prezzo=priceMap[corso]||''; prezzoInput.value = prezzo!==''?prezzo.toFixed(2):''; const partecipanti = partecipantiContainer.querySelectorAll('.partecipante-section').length; if(prezzo!=='' && partecipanti>0){ totaleContainer.style.display=''; totaleInput.value = (prezzo*partecipanti).toFixed(2);} else { totaleContainer.style.display='none'; totaleInput.value=''; }}
     corsoSelect.addEventListener('change', updatePrezzoETotale);
 
-    // Add/remove partecipanti
-    let partecipanteIndex = 1;
-    function addPartecipante() {
-      partecipanteIndex++;
-      const idx = partecipanteIndex;
-      const wrapper = document.createElement('div');
-      wrapper.className = 'form-section partecipante-section';
-      wrapper.dataset.partecipanteIndex = idx;
-      wrapper.innerHTML = `
-        <h3 class="section-title">
-          <span class="partecipante-title">Dati Partecipante ${idx}</span>
-          <button type="button" class="btn-remove-partecipante" onclick="removePartecipante(this)">Rimuovi</button>
-        </h3>
-        <div class="form-group">
-          <label>Nome:</label>
-          <input type="text" name="partecipante-${idx}-nome" class="partecipante-nome" placeholder="Inserisci il nome" required>
-        </div>
-        <div class="form-group">
-          <label>Cognome:</label>
-          <input type="text" name="partecipante-${idx}-cognome" class="partecipante-cognome" placeholder="Inserisci il cognome" required>
-        </div>
-        <div class="form-group">
-          <label>Email:</label>
-          <input type="email" name="partecipante-${idx}-email" class="partecipante-email" placeholder="Inserisci l'email" required>
-        </div>
-        <div class="form-group">
-          <label>Codice Fiscale:</label>
-          <input type="text" name="partecipante-${idx}-codice-fiscale" class="partecipante-codice-fiscale" maxlength="16" placeholder="Inserisci il codice fiscale" required>
-          <div class="error-message codice-fiscale-error">Il codice fiscale deve contenere esattamente 16 caratteri.</div>
-        </div>
-        <div class="form-group">
-          <label>Profilo Professionale / Mansione:</label>
-          <input type="text" name="partecipante-${idx}-profilo" class="partecipante-profilo" placeholder="Es. Responsabile sicurezza" required>
-        </div>
-      `;
-      partecipantiContainer.appendChild(wrapper);
-      updatePrezzoETotale();
-    }
-    window.addPartecipante = addPartecipante;
-    window.removePartecipante = function(btn) {
-      const section = btn.closest('.partecipante-section');
-      if (section) {
-        section.remove();
-        updatePrezzoETotale();
-      }
-    };
+    let partecipanteIndex=1;
+    function addPartecipante(){ partecipanteIndex++; const idx=partecipanteIndex; const wrapper=document.createElement('div'); wrapper.className='form-section partecipante-section'; wrapper.dataset.partecipanteIndex=idx; wrapper.innerHTML = `...`; partecipantiContainer.appendChild(wrapper); updatePrezzoETotale(); }
+    window.addPartecipante=addPartecipante;
+    window.removePartecipante=function(btn){ const s=btn.closest('.partecipante-section'); if(s){ s.remove(); updatePrezzoETotale(); }};
 
-    // SignaturePad init
-    function initSignaturePadForCanvas(canvas){
-      if (!canvas) return;
-      try {
-        const pad = new SignaturePad(canvas);
-        signaturePads[canvas.id] = pad;
-      } catch (e) {
-        console.warn('SignaturePad init failed:', e);
-      }
-    }
+    function initSignaturePadForCanvas(canvas){ if(!canvas) return; try{ const pad=new SignaturePad(canvas); signaturePads[canvas.id]=pad;}catch(e){console.warn('sig pad',e);} }
     initSignaturePadForCanvas(document.getElementById('unica-firma-pad'));
     initSignaturePadForCanvas(document.getElementById('legale-signature-pad'));
+    window.clearUnicaFirma=function(){ const c=document.getElementById('unica-firma-pad'); if(c && signaturePads[c.id]) signaturePads[c.id].clear(); };
+    window.clearLegaleSignature=function(){ const c=document.getElementById('legale-signature-pad'); if(c && signaturePads[c.id]) signaturePads[c.id].clear(); };
 
-    window.clearUnicaFirma = function() {
-      const c = document.getElementById('unica-firma-pad');
-      if (c && signaturePads[c.id]) signaturePads[c.id].clear();
-    };
-    window.clearLegaleSignature = function() {
-      const c = document.getElementById('legale-signature-pad');
-      if (c && signaturePads[c.id]) signaturePads[c.id].clear();
-    };
+    function drawTextToCanvas(text,canvas){ if(!canvas) return; const ctx=canvas.getContext('2d'); ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle='#000'; let fontSize=36; ctx.font=fontSize+'px "Montserrat", "Open Sans", sans-serif'; ctx.textBaseline='middle'; while(ctx.measureText(text).width>canvas.width-20 && fontSize>10){ fontSize-=2; ctx.font=fontSize+'px "Montserrat", "Open Sans", sans-serif'; } ctx.fillText(text,10,canvas.height/2); }
+    const unicaTextInput=document.getElementById('unica-firma-text'); if(unicaTextInput) unicaTextInput.addEventListener('input',()=>drawTextToCanvas(unicaTextInput.value||'', document.getElementById('unica-firma-text-preview')));
+    const legaleTextInput=document.getElementById('legale-signature-text'); if(legaleTextInput) legaleTextInput.addEventListener('input',()=>drawTextToCanvas(legaleTextInput.value||'', document.getElementById('legale-signature-text-preview')));
 
-    // Draw-text preview helper
-    function drawTextToCanvas(text, canvas) {
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      ctx.fillStyle = '#000';
-      let fontSize = 36;
-      ctx.font = fontSize + 'px "Montserrat", "Open Sans", sans-serif';
-      ctx.textBaseline = 'middle';
-      while (ctx.measureText(text).width > canvas.width - 20 && fontSize > 10) {
-        fontSize -= 2;
-        ctx.font = fontSize + 'px "Montserrat", "Open Sans", sans-serif';
-      }
-      const x = 10;
-      const y = canvas.height / 2;
-      ctx.fillText(text, x, y);
-    }
-    const unicaTextInput = document.getElementById('unica-firma-text');
-    if (unicaTextInput) {
-      unicaTextInput.addEventListener('input', function(){
-        const cv = document.getElementById('unica-firma-text-preview');
-        drawTextToCanvas(this.value || '', cv);
-      });
-    }
-    const legaleTextInput = document.getElementById('legale-signature-text');
-    if (legaleTextInput) {
-      legaleTextInput.addEventListener('input', function(){
-        const cv = document.getElementById('legale-signature-text-preview');
-        drawTextToCanvas(this.value || '', cv);
-      });
-    }
+    function isCanvasBlank(canvas){ if(!canvas) return true; try{ const ctx=canvas.getContext('2d'); const data=ctx.getImageData(0,0,canvas.width,canvas.height).data; for(let i=3;i<data.length;i+=4){ if(data[i]!=0) return false;} }catch(e){return false;} return true; }
 
-    // Toggle UI for unica signature
-    function updateUnicaSignatureUI() {
-      const sel = document.querySelector('input[name="unica-signature-type"]:checked');
-      const v = sel ? sel.value : 'draw';
-      document.querySelectorAll('.unica-signature-draw').forEach(el => el.style.display = v === 'draw' ? '' : 'none');
-      document.querySelectorAll('.unica-signature-text').forEach(el => el.style.display = v === 'text' ? '' : 'none');
-      document.querySelectorAll('.unica-signature-certified').forEach(el => el.style.display = v === 'certified' ? '' : 'none');
-      document.querySelectorAll('.unica-signature-alt').forEach(el => el.style.display = v === 'alternative' ? '' : 'none');
-    }
-    document.querySelectorAll('input[name="unica-signature-type"]').forEach(r => r.addEventListener('change', updateUnicaSignatureUI));
-    updateUnicaSignatureUI();
+    function validateSignatures(){ document.querySelectorAll('.error-message').forEach(e=>e.style.display='none'); const privacy=document.querySelector('input[name="privacy-consent"]:checked'); if(!privacy || privacy.value!=='autorizza'){ document.getElementById('privacy-error-message').style.display=''; return {ok:false,msg:'Autorizzazione privacy mancante'} }
+      const unicaType=(document.querySelector('input[name="unica-signature-type"]:checked')||{}).value||'draw'; if(unicaType==='draw'){ const c=document.getElementById('unica-firma-pad'); if(!c || !signaturePads[c.id] || signaturePads[c.id].isEmpty()){ document.getElementById('unica-draw-error').style.display=''; return {ok:false,msg:'Firma unica (disegna) mancante'} } } else if(unicaType==='text'){ const txt=(document.getElementById('unica-firma-text')||{}).value||''; if(!txt.trim()){ document.getElementById('unica-text-error').style.display=''; return {ok:false,msg:'Firma unica (testo) mancante'} } } else if(unicaType==='certified'){ const nome=(document.getElementById('unica-cert-nome')||{}).value||''; const cf=(document.getElementById('unica-cert-cf')||{}).value||''; if(!nome.trim()||!cf.trim()){ document.getElementById('unica-certified-error').style.display=''; return {ok:false,msg:'Dettagli firma certificata mancanti'} } } else if(unicaType==='alternative'){ const alt=(document.getElementById('alt-auth-name')||{}).value||''; const conf=(document.getElementById('alt-auth-confirm')||{}).checked; if(!alt.trim()||!conf){ document.getElementById('unica-alt-error').style.display=''; return {ok:false,msg:'Autenticazione alternativa incompleta'} } }
+      if(tipoAzienda.checked){ const legaleType=(document.querySelector('input[name="legale-signature-type"]:checked')||{}).value||'draw'; if(legaleType==='draw'){ const c=document.getElementById('legale-signature-pad'); if(!c||!signaturePads[c.id]||signaturePads[c.id].isEmpty()){ document.getElementById('legale-draw-error').style.display=''; return {ok:false,msg:'Firma del legale mancante'} } } else if(legaleType==='text'){ const txt=(document.getElementById('legale-signature-text')||{}).value||''; if(!txt.trim()){ document.getElementById('legale-text-error').style.display=''; return {ok:false,msg:'Firma del legale (testo) mancante'} } } else if(legaleType==='certified'){ formData.append('legale-cert-nome', (document.getElementById('legale-cert-nome')||{}).value||''); formData.append('legale-cert-cf', (document.getElementById('legale-cert-cf')||{}).value||''); formData.append('legale-cert-provider', (document.getElementById('legale-cert-provider')||{}).value||''); } }
+      return {ok:true,msg:''}; }
 
-    // Toggle UI for legale signature
-    function updateLegaleSignatureUI() {
-      const sel = document.querySelector('input[name="legale-signature-type"]:checked');
-      const v = sel ? sel.value : 'draw';
-      document.querySelectorAll('.legale-signature-draw').forEach(el => el.style.display = v === 'draw' ? '' : 'none');
-      document.querySelectorAll('.legale-signature-text').forEach(el => el.style.display = v === 'text' ? '' : 'none');
-      document.querySelectorAll('.legale-signature-certified').forEach(el => el.style.display = v === 'certified' ? '' : 'none');
-    }
-    document.querySelectorAll('input[name="legale-signature-type"]').forEach(r => r.addEventListener('change', updateLegaleSignatureUI));
-    updateLegaleSignatureUI();
-
-    // Helper: is canvas blank
-    function isCanvasBlank(canvas) {
-      if (!canvas) return true;
-      try {
-        const ctx = canvas.getContext('2d');
-        const pixelBuffer = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-        for (let i = 3; i < pixelBuffer.length; i += 4) {
-          if (pixelBuffer[i] !== 0) return false;
-        }
-      } catch (e) {
-        // se errore di security consideriamo non blank per non perdere firma
-        return false;
-      }
-      return true;
-    }
-
-    // VALIDAZIONI SPECIFICHE DELLE FIRME
-    function validateSignatures() {
-      // reset error messages
-      document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
-
-      // privacy consent
-      const privacyConsent = document.querySelector('input[name="privacy-consent"]:checked');
-      if (!privacyConsent || privacyConsent.value !== 'autorizza') {
-        document.getElementById('privacy-error-message').style.display = '';
-        return { ok:false, msg: 'Autorizzazione privacy mancante' };
-      }
-
-      // unica signature
-      const unicaTypeEl = document.querySelector('input[name="unica-signature-type"]:checked');
-      const unicaType = unicaTypeEl ? unicaTypeEl.value : 'draw';
-
-      if (unicaType === 'draw') {
-        const c = document.getElementById('unica-firma-pad');
-        if (!c || !signaturePads[c.id] || signaturePads[c.id].isEmpty()) {
-          document.getElementById('unica-draw-error').style.display = '';
-          return { ok:false, msg: 'Firma unica (disegna) mancante' };
-        }
-      } else if (unicaType === 'text') {
-        const txt = (document.getElementById('unica-firma-text') || {}).value || '';
-        if (!txt.trim()) {
-          document.getElementById('unica-text-error').style.display = '';
-          return { ok:false, msg: 'Firma unica (testo) mancante' };
-        }
-      } else if (unicaType === 'certified') {
-        const nome = (document.getElementById('unica-cert-nome') || {}).value || '';
-        const cf = (document.getElementById('unica-cert-cf') || {}).value || '';
-        if (!nome.trim() || !cf.trim()) {
-          document.getElementById('unica-certified-error').style.display = '';
-          return { ok:false, msg: 'Dettagli firma certificata mancanti' };
-        }
-      } else if (unicaType === 'alternative') {
-        const altName = (document.getElementById('alt-auth-name') || {}).value || '';
-        const altConfirm = (document.getElementById('alt-auth-confirm') || {}).checked;
-        if (!altName.trim() || !altConfirm) {
-          document.getElementById('unica-alt-error').style.display = '';
-          return { ok:false, msg: 'Autenticazione alternativa incompleta' };
-        }
-      }
-
-      // se è azienda: verifica firma del legale (almeno un metodo compilato)
-      if (tipoAzienda.checked) {
-        const legaleTypeEl = document.querySelector('input[name="legale-signature-type"]:checked');
-        const legaleType = legaleTypeEl ? legaleTypeEl.value : 'draw';
-        if (legaleType === 'draw') {
-          const c = document.getElementById('legale-signature-pad');
-          if (!c || !signaturePads[c.id] || signaturePads[c.id].isEmpty()) {
-            document.getElementById('legale-draw-error').style.display = '';
-            return { ok:false, msg: 'Firma del legale mancante' };
-          }
-        } else if (legaleType === 'text') {
-          const txt = (document.getElementById('legale-signature-text') || {}).value || '';
-          if (!txt.trim()) {
-            document.getElementById('legale-text-error').style.display = '';
-            return { ok:false, msg: 'Firma del legale (testo) mancante' };
-          }
-        } else if (legaleType === 'certified') {
-          const nome = (document.getElementById('legale-cert-nome') || {}).value || '';
-          const cf = (document.getElementById('legale-cert-cf') || {}).value || '';
-          if (!nome.trim() || !cf.trim()) {
-            document.getElementById('legale-certified-error').style.display = '';
-            return { ok:false, msg: 'Dettagli firma certificata del legale mancanti' };
-          }
-        }
-      }
-
-      return { ok:true, msg: '' };
-    }
-
-    // Form submission handler
-    iscrForm.addEventListener('submit', function(event) {
-      event.preventDefault();
-      const validation = validateSignatures();
-      if (validation.ok) {
-        // Submit the form if validation is successful
-        this.submit();
-      } else {
-        alert(validation.msg);
-      }
+    // Submit with fetch so we can show modal and not reload
+    iscrForm.addEventListener('submit', async function(e){ e.preventDefault(); const v=validateSignatures(); if(!v.ok){ alert(v.msg); return; }
+      // if alternative auth, set timestamp
+      const altSel=document.querySelector('input[name="unica-signature-type"]:checked'); if(altSel && altSel.value==='alternative'){ document.getElementById('alt-auth-timestamp').value=new Date().toISOString(); }
+      const formData=new FormData(iscrForm);
+      // attach unique signature
+      const unicaType=(document.querySelector('input[name="unica-signature-type"]:checked')||{}).value||'draw'; formData.append('unica-signature-type', unicaType);
+      if(unicaType==='draw'){ const c=document.getElementById('unica-firma-pad'); if(c && signaturePads[c.id] && !signaturePads[c.id].isEmpty()){ formData.append('firma-unica-image', signaturePads[c.id].toDataURL('image/png')); } }
+      else if(unicaType==='text'){ const txt=(document.getElementById('unica-firma-text')||{}).value||''; const preview=document.getElementById('unica-firma-text-preview'); if(txt && preview){ try{ formData.append('firma-unica-image', preview.toDataURL('image/png')); }catch(e){} formData.append('firma-unica-text', txt); } }
+      else if(unicaType==='certified'){ } 
+      try{
+        const resp=await fetch(iscrForm.action, { method:'POST', body:formData, headers:{ 'Accept':'application/json' } });
+        console.log('Formspree response status:', resp.status);
+        if(resp.ok){ successModal.style.display=''; iscrForm.reset(); setPrivacyDate(); updatePrezzoETotale(); Object.keys(signaturePads).forEach(id=>{ try{ signaturePads[id].clear(); }catch(e){} }); }
+        else{ let detail=''; try{ const ct=resp.headers.get('content-type')||''; if(ct.indexOf('application/json')!==-1){ const j=await resp.json(); detail=j.error||JSON.stringify(j); } else { detail=await resp.text(); } }catch(e){ detail='Nessun dettaglio disponibile'; } alert('Errore invio (status '+resp.status+'): '+detail); }
+      }catch(err){ console.error(err); alert('Errore di rete durante l\'invio. Riprova più tardi.'); }
     });
+
+    // PDF generation
+    window.downloadRegistrationPDF = function(){ const jspdfLib=window.jspdf; if(!jspdfLib||!jspdfLib.jsPDF){ alert('Errore: libreria jsPDF non trovata.'); return; } const { jsPDF } = jspdfLib; const doc=new jsPDF({unit:'pt', format:'a4'}); const marginX=40; let y=40; const pageHeight=doc.internal.pageSize.getHeight(); const lineHeight=16; doc.setFontSize(16); doc.text('Iscrizione Corso - IMBC Fire & Safety Academy', marginX, y); y+=24; const corso=(document.getElementById('corso')&&document.getElementById('corso').value)||'N/D'; const prezzo=(document.getElementById('prezzo')&&document.getElementById('prezzo').value)||''; const totale=(document.getElementById('totale')&&document.getElementById('totale').value)||''; doc.setFontSize(12); doc.text(`Corso: ${corso}`, marginX, y); y+=lineHeight; if(prezzo){ doc.text(`Quota per persona: € ${prezzo}`, marginX, y); y+=lineHeight; } if(totale){ doc.text(`Totale: € ${totale}`, marginX, y); y+=lineHeight+6; } const tipoIscr=document.querySelector('input[name="tipo-iscrizione"]:checked'); if(tipoIscr && tipoIscr.value==='azienda'){ const rag=document.getElementById('ragione-sociale')&&document.getElementById('ragione-sociale').value; if(rag){ doc.text(`Ragione Sociale: ${rag}`, marginX, y); y+=lineHeight; } const piva=document.getElementById('partita-iva')&&document.getElementById('partita-iva').value; if(piva){ doc.text(`P.IVA / C.F. azienda: ${piva}`, marginX, y); y+=lineHeight; } y+=6; }
+      doc.setFontSize(14); doc.text('Partecipanti:', marginX, y); y+=lineHeight; doc.setFontSize(11); const partecipanti=document.querySelectorAll('.partecipante-section'); partecipanti.forEach((p,idx)=>{ const nome=(p.querySelector('.partecipante-nome')||{}).value||''; const cogn=(p.querySelector('.partecipante-cognome')||{}).value||''; const email=(p.querySelector('.partecipante-email')||{}).value||''; const cf=(p.querySelector('.partecipante-codice-fiscale')||{}).value||''; const prof=(p.querySelector('.partecipante-profilo')||{}).value||''; const line=`${idx+1}. ${nome} ${cogn}`+(prof?` — ${prof}`:'')+(email?` — ${email}`:'')+(cf?` — CF: ${cf}`:''); if(y+40>pageHeight-80){ doc.addPage(); y=40; } doc.text(line, marginX, y); y+=lineHeight; }); y+=8;
+      function addSignatureIfPresent(id,title){ const canvas=document.getElementById(id); if(!canvas) return; if(isCanvasBlank(canvas)) return; try{ const dataUrl=canvas.toDataURL('image/png'); const imgProps=doc.getImageProperties(dataUrl); const maxWidth=220; const imgW=Math.min(maxWidth, imgProps.width); const imgH=(imgProps.height*imgW)/imgProps.width; if(y+imgH+40>pageHeight-40){ doc.addPage(); y=40; } doc.setFontSize(12); doc.text(title, marginX, y); y+=lineHeight; doc.addImage(dataUrl,'PNG',marginX,y,imgW,imgH); y+=imgH+12; }catch(e){ console.warn('pdf sig',e);} }
+      addSignatureIfPresent('unica-firma-pad','Firma di Autenticazione (disegno)'); addSignatureIfPresent('unica-firma-text-preview','Firma di Autenticazione (testo)'); addSignatureIfPresent('legale-signature-pad','Firma Legale (disegno)'); addSignatureIfPresent('legale-signature-text-preview','Firma Legale (testo)'); const unicaType=(document.querySelector('input[name="unica-signature-type"]:checked')||{}).value; if(unicaType==='certified'){ const nome=(document.getElementById('unica-cert-nome')||{}).value||''; const cf=(document.getElementById('unica-cert-cf')||{}).value||''; const prov=(document.getElementById('unica-cert-provider')||{}).value||''; if(y+60>pageHeight-60){ doc.addPage(); y=40; } doc.setFontSize(12); doc.text('Dettagli firma certificata:', marginX, y); y+=lineHeight; if(nome){ doc.text(`Nome: ${nome}`, marginX, y); y+=lineHeight; } if(cf){ doc.text(`Codice Fiscale: ${cf}`, marginX, y); y+=lineHeight; } if(prov){ doc.text(`Provider: ${prov}`, marginX, y); y+=lineHeight; } y+=8; }
+      if(unicaType==='alternative'){ const altName=(document.getElementById('alt-auth-name')||{}).value||''; const altConfirm=(document.getElementById('alt-auth-confirm')||{}).checked?'SI':'NO'; const altTimestamp=(document.getElementById('alt-auth-timestamp')||{}).value||new Date().toISOString(); if(y+60>pageHeight-60){ doc.addPage(); y=40; } doc.setFontSize(12); doc.text('Autenticazione alternativa:', marginX, y); y+=lineHeight; if(altName){ doc.text(`Nome: ${altName}`, marginX, y); y+=lineHeight; } doc.text(`Conferma dichiarazione: ${altConfirm}`, marginX, y); y+=lineHeight; doc.text(`Timestamp: ${altTimestamp}`, marginX, y); y+=lineHeight+8; }
+      doc.setFontSize(10); const nowStr=new Date().toLocaleString(); const footerY=doc.internal.pageSize.getHeight()-30; doc.text(`Generato il ${nowStr}`, marginX, footerY); const filename=`iscrizione_${new Date().toISOString().slice(0,19).replace(/[:T]/g,'-')}.pdf`; try{ doc.save(filename);}catch(e){ console.error('pdf save',e); alert('Errore durante la generazione del PDF.'); } };
+
+    // contact modal helpers
+    window.openContattiModal=function(){ contattiModal.style.display=''; };
+    window.closeContattiModal=function(){ contattiModal.style.display='none'; };
+    window.submitContattiForm=function(e){ e.preventDefault(); alert('Segnalazione inviata. Grazie.'); closeContattiModal(); };
+    window.closeSuccessModal=function(){ successModal.style.display='none'; };
+
   })();
   </script>
 </body>
